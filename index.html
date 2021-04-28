@@ -13,6 +13,10 @@
     <link
       href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css"
       rel="stylesheet">
+      
+	<link rel="stylesheet" href="src/code-landing.css">
+    <script src="src/highlight.pack.js"></script>
+  	<script>hljs.highlightAll();</script>
   </head>
 
 <div class="relative bg-gray-900 overflow-hidden">
@@ -116,9 +120,31 @@
         Here’s what using Framework X in code looks like.
       </p>
     </div>
-    <div class="mt-12">
-      <img class="shadow-xl round" src="src/code.svg" alt="Framework X code screenshot">
-    </div>
+    
+<pre class="text-left mt-12"><code class="php">require __DIR__ . '/../vendor/autoload.php';
+
+$loop = React\EventLoop\Factory::create();
+$app = new FrameworkX\App($loop);
+
+$app->get('/', function () {
+    return new React\Http\Message\Response(
+        200,
+        [],
+        "Hello wörld!\n"
+    );
+});
+
+$app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $request) {
+    return new React\Http\Message\Response(
+        200,
+        [],
+        "Hello " . $request->getAttribute('name') . "!\n"
+    );
+});
+
+$loop->run();
+</code></pre>    
+    
     <p class="mt-12 max-w-prose mx-auto text-xl text-gray-500">
       But that’s not all!
       We are currently working on the documentation with all the details to give you a deep understanding of how everything works and how to build most common use-cases.
@@ -271,9 +297,21 @@
         <img class="relative mx-auto" width="490" src="src/simplewebapis.svg" alt="">
       </div>
 
-      <div class="col-span-full mt-8">
-        <img class="shadow-xl round" src="src/simplewebapis-code.svg" alt="">
-      </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$app->get('/users', function () {
+// TODO: get users from DB
+    $users = [['name' => 'Alice'], ['name' => 'Bob']];
+
+    $json = json_encode($users);
+
+    return new React\Http\Message\Response(
+        200,
+        [
+            'Content-Type' => 'application/json'
+        ],
+        $json
+    );
+});
+</code></pre> 
     </section>
 
     <section id="lightning-fast" class="relative mt-12 sm:mt-16 lg:mt-24">
@@ -360,9 +398,19 @@
         </div>
       </div>
 
-      <div class="col-span-full mt-8">
-        <img class="shadow-xl round" src="src/lightningfast-code.svg" alt="">
-      </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$ ab -n10000 -c10 http://localhost:8080/
+…
+Concurrency Level:      10
+Time taken for tests:   0.991 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      1090000 bytes
+HTML transferred:       130000 bytes
+Requests per second:    10095.17 [#/sec] (mean)
+Time per request:       0.991 [ms] (mean)
+Time per request:       0.099 [ms] (mean, across all concurrent requests)
+Transfer rate:          1074.58 [Kbytes/sec] received
+</code></pre> 
     </section>
 
     <section id="async" class="relative max-w-xl mx-auto lg:max-w-7xl">
@@ -446,9 +494,23 @@
         </div>
       </div>
 
-      <div class="col-span-full mt-8">
-        <img class="shadow-xl round" src="src/supportsasync-code.svg" alt="">
-      </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$app->get('/book/{id:\d+}', function (Psr\Http\Message\ServerRequestInterface $request) use ($db, $twig) {
+return $db->query(
+    'SELECT * FROM books WHERE ID=?',
+    [$request->getAttribute('id')]
+)->then(function (array $row) use ($twig) {
+    $html = $twig->render('book.twig', $row);
+
+      return new React\Http\Message\Response(
+            200,
+            [
+                'Content-Type' => 'text/html; charset=utf-8'
+            ],
+            $html
+        );
+    });
+});
+</code></pre> 
     </section>
 
     <section id="reactive-and-streaming" class="relative mt-12 sm:mt-16 lg:mt-24">
@@ -532,9 +594,22 @@
         </div>
       </div>
 
-      <div class="col-span-full mt-8">
-        <img class="shadow-xl round" src="src/reactiveandstreaming-code.svg" alt="">
-      </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$app->get('/users', function () use ($redis) {
+    // stream messages received from Redis PubSub channel
+    $stream = new React\Stream\ThroughStream();
+    $redis->on('message', function ($message) use ($stream) {
+        $stream->write("data: $message\n\n");
+    });
+
+    return new React\Http\Message\Response(
+        200,
+        [
+            'Content-Type' => 'text/event-stream'
+        ],
+        $stream
+    );
+});
+</code></pre> 
     </section>
 
     <section id="runs-anywhere" class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
@@ -614,9 +689,18 @@
         <img class="relative mx-auto" width="490" src="src/runsanywhere.svg" alt="">
       </div>
 
-      <div class="col-span-full mt-8">
-        <img class="shadow-xl round" src="src/runsanywhere-code.svg" alt="Framework X code screenshot">
-      </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$ php -S localhost:8081 examples/index.php
+PHP Development Server (http://localhost:8081) started
+
+$ php examples/index.php
+Listening on http://127.0.0.1:8080
+
+$ curl http://localhost:8081/
+Hello world!
+
+$ curl http://localhost:8080/
+Hello world!
+</code></pre> 
     </section>
   </div>
 </section>
@@ -736,9 +820,16 @@
         First manually change your <code class="bg-gray-100 px-2 py-1">composer.json</code> to include these lines:
       </p>
     </div>
-    <div class="mt-12 -mb-10">
-      <img class="rounded-lg shadow-xl" src="src/install-patch.svg" alt="">
-    </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">{
+    …,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/clue/framework-x"
+        }
+    ]
+}
+</code></pre> 
   </div>
 </section>
 
@@ -748,9 +839,8 @@
       Next, simply install Framework X with a single command:
     </p>
   </div>
-  <div class="mt-12">
-    <img class="rounded-lg shadow-xl" src="src/install-composer.svg" alt="">
-  </div>
+<pre class="text-left mt-12 col-span-full"><code class="php">$ composer require clue/framework-x:dev-main
+</code></pre> 
   <div>
     <p class="mt-10 mb-10 max-w-prose mx-auto text-xl text-gray-500">
       That's it already!
@@ -759,7 +849,7 @@
 </section>
 
 <section id="--twitter" class="bg-gray-50">
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+  <div class="max-w-7xl mx-auto mt-20 py-20 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
     <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
       <span class="block">Don't miss out on the release!</span>
       <span class="block text-indigo-600">Follow Framework X on Twitter to stay up to date.</span>
