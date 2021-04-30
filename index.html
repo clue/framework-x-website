@@ -34,10 +34,8 @@
     <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
       <div class="flex items-center flex-1">
         <div class="flex items-center justify-between w-full md:w-auto">
-          <a href="#">
-            <span class="sr-only">Workflow</span>
-            <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
-          </a>
+          <span class="sr-only">Framework X</span>
+          <img class="h-8 w-auto sm:h-10" src="src/logo.svg" alt="Framework X logo">
         </div>
         <div class="hidden space-x-10 md:flex md:ml-10">
           <a href="#features" class="text-base font-medium text-white hover:text-gray-300">Features</a>
@@ -48,6 +46,14 @@
 
           <a href="#faq" class="text-base font-medium text-white hover:text-gray-300">FAQ</a>
         </div>
+      </div>
+      <div class="hidden md:flex md:items-center md:space-x-6">
+        <a href="#quickstart" class="text-base font-medium text-white hover:text-gray-300">
+          Quickstart
+        </a>
+        <a href="docs/" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md bg-indigo-500 text-white font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900">
+          Documentation
+        </a>
       </div>
     </nav>
 
@@ -81,20 +87,21 @@
                       <input disabled id="field" type="email" placeholder="Coming soon" class="cursor-not-allowed block w-full px-4 py-3 rounded-md border-0 text-base text-gray-800 bg-gray-800 placeholder-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-800">
                     </div>
                     <div class="mt-3 sm:mt-0 sm:ml-3">
-                      <button disabled type="submit" class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900">Get beta access</button>
+                      <button disabled type="submit" class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900" title="Coming soon">Pre-registration open beta</button>
                     </div>
                   </div>
-                  <p class="mt-3 text-sm text-gray-300 sm:mt-4">Apply for early beta access. Will be available soon.</p>
+                  <p class="mt-3 text-sm text-gray-300 sm:mt-4">Apply for open beta access. Will be available soon.</p>
                 </form>
               </div>
             </div>
           </div>
           <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
             <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-              <button type="button" class="relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span class="sr-only">Watch our video to learn more</span>
-                <img class="w-full" src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
-                <div class="absolute inset-0 w-full h-full flex items-center justify-center" aria-hidden="true">
+              <button type="button" class="cursor-not-allowed relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <span class="sr-only">Watch our video to learn more about Framework X.</span>
+                <!--Edited version of https://unsplash.com/photos/f77Bh3inUpE -->
+                <img class="w-full" src="src/video_placeholder.jpg" alt="Video of Framework X">
+                <div class="absolute inset-0 w-full h-full flex items-center justify-center" aria-hidden="true" title="Coming soon">
                   <svg class="h-20 w-20 text-indigo-500 hover:text-indigo-600" fill="currentColor" viewBox="0 0 84 84">
                     <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
                     <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
@@ -108,6 +115,24 @@
     </main>
   </div>
 </div>
+
+<section class="relative bg-indigo-600">
+  <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+    <div class="pr-16 sm:text-center sm:px-16">
+      <p class="font-medium text-white">
+        <span class="md:hidden">
+          Early access.
+        </span>
+        <span class="hidden md:inline">
+          Big news! We're excited to announce early access is available.
+        </span>
+        <span class="block sm:ml-2 sm:inline-block">
+          <a href="https://github.com/clue-access/clue-access" class="text-white font-bold underline"> Get early access <span aria-hidden="true">&rarr;</span></a>
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
 
 <section id="--screenshot" class="relative overflow-hidden py-16 lg:py-24">
   <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
@@ -169,7 +194,7 @@ $loop->run();
         <footer class="mt-8">
           <div class="flex items-start">
             <div class="flex-shrink-0 inline-flex rounded-full border-2 border-white">
-              <img class="h-12 w-12 rounded-full" src="https://pbs.twimg.com/profile_images/1366666000385589251/yPJOPUw-_bigger.jpg" alt="Ian Tearle">
+              <img class="h-12 w-12 rounded-full" src="https://pbs.twimg.com/profile_images/1366666000385589251/yPJOPUw-_bigger.jpg" alt="Photo Ian Tearle">
             </div>
             <div class="ml-4">
               <div class="text-base font-medium text-white">Ian Tearle</div>
@@ -186,17 +211,20 @@ $loop->run();
             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
           </svg>
           <p class="relative">
-            I think Framework X is great because… / I’m looking forward to Framework X because…  <em>What’s on your mind?</em>
+            <a href="https://twitter.com/geertvanbommel/status/1387805916842577923">
+              I hope I can sleep tonight. 
+              @x_framework #1moresleep for early access.
+            </a>
           </p>
         </div>
         <footer class="mt-8">
           <div class="flex items-start">
             <div class="flex-shrink-0 inline-flex rounded-full border-2 border-white">
-              <img class="h-12 w-12 rounded-full" src="src/christian.jpg" alt="">
+              <img class="h-12 w-12 rounded-full" src="https://pbs.twimg.com/profile_images/1119674052543700992/uRHhy3gl_400x400.jpg" alt="Photo Geert Van Bommel">
             </div>
             <div class="ml-4">
-              <div class="text-base font-medium text-white">Your Name</div>
-              <div class="text-base font-medium text-indigo-200">@YourHandle</div>
+              <div class="text-base font-medium text-white">Geert Van Bommel</div>
+              <div class="text-base font-medium text-indigo-200">@geertvanbommel</div>
             </div>
           </div>
         </footer>
@@ -249,7 +277,7 @@ $loop->run();
               </dd>
             </div>
           </div>
-          
+
           <div class="flex">
             <div class="flex-shrink-0">
               <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
@@ -545,7 +573,7 @@ Transfer rate:          1074.58 [Kbytes/sec] received
                 </dd>
               </div>
             </div>
-            
+
             <dl class="mt-10 space-y-10">
             <div class="flex">
               <div class="flex-shrink-0">
@@ -749,7 +777,7 @@ Hello world!
           </div>
           <cite class="relative flex items-center sm:items-start bg-indigo-600 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10 sm:mt-10">
             <div class="relative rounded-full border-2 border-white sm:absolute sm:top-0 sm:transform sm:-translate-y-1/2">
-              <img class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-indigo-300" src="src/christian.jpg" alt="Christian Lück">
+              <img class="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-indigo-300" src="src/christian.jpg" alt="Photo Christian Lück">
             </div>
             <span class="relative ml-4 text-indigo-300 font-semibold leading-6 sm:ml-24 sm:pl-1">
               <p><a href="https://twitter.com/another_clue"><span class="text-white font-semibold block sm:inline hover:underline">Christian Lück</span> @another_clue</a>
@@ -780,7 +808,7 @@ Hello world!
           <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
             <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
               <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                Repositories on Github
+                <a href="https://github.com/clue" class="hover:underline">Repositories on Github</a>
               </dt>
               <dd class="order-1 text-5xl font-extrabold text-indigo-600">
                 100+
@@ -788,7 +816,7 @@ Hello world!
             </div>
             <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
               <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                Maintainer of ReactPHP
+                <a href="https://reactphp.org/#team" class="hover:underline">Maintainer of ReactPHP</a>
               </dt>
               <dd class="order-1 text-5xl font-extrabold text-indigo-600">
                 ~8 Years
@@ -796,7 +824,7 @@ Hello world!
             </div>
             <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
               <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                downloads
+                <a href="https://packagist.org/users/clue/" class="hover:underline">Downloads</a>
               </dt>
               <dd class="order-1 text-5xl font-extrabold text-indigo-600">
                 100+ Mio
@@ -809,12 +837,12 @@ Hello world!
   </div>
 </section>
 
-<section id="--install" class="relative pt-16 sm:pt-24 lg:pt-32">
+<section id="quickstart" class="relative pt-16 sm:pt-24 lg:pt-32">
   <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl  lg:max-w-7xl">
     <div>
       <h2 class="text-base font-semibold tracking-wider text-indigo-600 uppercase">Quickstart</h2>
       <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-        Get startet in seconds
+        Get started in seconds
       </p>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
         First manually change your <code class="bg-gray-100 px-2 py-1">composer.json</code> to include these lines:
@@ -844,12 +872,25 @@ Hello world!
   <div>
     <p class="mt-10 mb-10 max-w-prose mx-auto text-xl text-gray-500">
       That's it already!
+      If you also can't wait to finally try it out, get early access to Framework X.
     </p>
+  </div>
+  <div class="mt-8 flex justify-center">
+    <div class="inline-flex rounded-md shadow">
+      <a href="https://github.com/clue-access/clue-access" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+        Get early access
+      </a>
+    </div>
+    <div class="ml-3 inline-flex">
+      <a href="docs/" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+        Documentation
+      </a>
+    </div>
   </div>
 </section>
 
-<section id="--twitter" class="bg-gray-50">
-  <div class="max-w-7xl mx-auto mt-20 py-20 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+<section id="--twitter" class="bg-gray-50 mt-12">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
     <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
       <span class="block">Don't miss out on the release!</span>
       <span class="block text-indigo-600">Follow Framework X on Twitter to stay up to date.</span>
@@ -999,7 +1040,7 @@ Hello world!
 
 <section id="cooperation" class="relative bg-gray-800">
   <div class="h-56 bg-gray-800 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-    <img class="w-full h-full object-cover" src="src/support.jpg" alt="">
+    <img class="w-full h-full object-cover" src="src/support.jpg" alt="People talk to each other and sit in front of their notebooks">
   </div>
   <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
     <div class="md:ml-auto md:w-1/2 md:pl-10">
@@ -1016,7 +1057,7 @@ Hello world!
       </p>
       <div class="mt-8">
         <div class="inline-flex rounded-md shadow">
-          <a href="https://clue.engineering/contact" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-bold rounded-md text-white bg-indigo-500 hover:bg-indigo-600">
+          <a href="https://clue.engineering/contact" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base rounded-md text-white bg-indigo-500 hover:bg-indigo-600">
             Let’s work together
             <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
@@ -1138,6 +1179,12 @@ Hello world!
       <div class="px-5 py-2">
         <a href="#runs-anywhere" class="text-base text-white hover:text-gray-300">
           Runs anywhere
+        </a>
+      </div>
+
+      <div class="px-5 py-2">
+        <a href="docs/" class="text-base text-white hover:text-gray-300">
+          Documentation
         </a>
       </div>
 
