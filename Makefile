@@ -6,7 +6,7 @@ build:
 	cp overrides/* source/overrides/
 	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material build
 	cp -r source/build/docs/ build/
-	cp index.html build/
+	cp .htaccess index.html build/
 	cp src/* build/src/
 
 serve: build

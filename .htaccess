@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteRule ^docs/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}getting-started/ [R]
+
+RewriteRule ^docs/getting-started/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}quickstart/ [R]
+RewriteRule ^docs/best-practices/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}controllers/ [R]
+RewriteRule ^docs/api/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}app/ [R]
+RewriteRule ^docs/async/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}promises/ [R]
+RewriteRule ^docs/integrations/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}database/ [R]
+RewriteRule ^docs/more/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}philosophy/ [R]
