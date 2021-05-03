@@ -426,18 +426,19 @@ $loop->run();
         </div>
       </div>
 
-<pre class="text-left mt-12 col-span-full shadow-2xl"><code class="plaintext rounded-md">$ ab -n10000 -c10 http://localhost:8080/
+<pre class="text-left mt-12 col-span-full shadow-2xl"><code class="plaintext rounded-md">$ ab -n100000 -c50 -k http://localhost:8080/
 …
-Concurrency Level:      10
-Time taken for tests:   0.991 seconds
-Complete requests:      10000
+Concurrency Level:      50
+Time taken for tests:   5.508 seconds
+Complete requests:      100000
 Failed requests:        0
-Total transferred:      1090000 bytes
-HTML transferred:       130000 bytes
-Requests per second:    10095.17 [#/sec] (mean)
-Time per request:       0.991 [ms] (mean)
-Time per request:       0.099 [ms] (mean, across all concurrent requests)
-Transfer rate:          1074.58 [Kbytes/sec] received
+Keep-Alive requests:    100000
+Total transferred:      13300000 bytes
+HTML transferred:       1300000 bytes
+Requests per second:    18155.95 [#/sec] (mean)
+Time per request:       2.754 [ms] (mean)
+Time per request:       0.055 [ms] (mean, across all concurrent requests)
+Transfer rate:          2358.15 [Kbytes/sec] received
 </code></pre> 
     </section>
 
