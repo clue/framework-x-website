@@ -148,7 +148,9 @@
       </p>
     </div>
 
-<pre class="text-left mt-12 shadow-2xl"><code class="php rounded-md">require __DIR__ . '/../vendor/autoload.php';
+<pre class="text-left mt-12 shadow-2xl"><code class="php rounded-md">&lt;?php
+
+require __DIR__ . '/../vendor/autoload.php';
 
 $loop = React\EventLoop\Factory::create();
 $app = new FrameworkX\App($loop);
@@ -169,6 +171,7 @@ $app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $re
     );
 });
 
+$app->run();
 $loop->run();
 </code></pre>
 
