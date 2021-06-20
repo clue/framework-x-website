@@ -148,10 +148,11 @@
       </p>
     </div>
 
-<pre class="text-left mt-12 shadow-2xl"><code class="php rounded-md">require __DIR__ . '/../vendor/autoload.php';
+<pre class="text-left mt-12 shadow-2xl"><code class="php rounded-md">&lt;?php
 
-$loop = React\EventLoop\Factory::create();
-$app = new FrameworkX\App($loop);
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = new FrameworkX\App();
 
 $app->get('/', function () {
     return new React\Http\Message\Response(
@@ -169,7 +170,7 @@ $app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $re
     );
 });
 
-$loop->run();
+$app->run();
 </code></pre>
 
     <p class="mt-12 max-w-prose mx-auto text-xl text-gray-500">
