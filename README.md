@@ -30,3 +30,10 @@ $ make clean
 
 Once built (see previous "Build" section), you can simply deploy the `build/`
 directory behind a web server of choice.
+
+The live website is deployed by pushing the contents of the `build/` directory to
+the `live` branch like this:
+
+```bash
+$ make deploy
+```
