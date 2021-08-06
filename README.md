@@ -1,6 +1,6 @@
 # Framework X website
 
-[![CI status](https://github.com/clue/framework-xwebsite/workflows/Deploy/badge.svg)](https://github.com/clue/framework-x-website/actions)
+[![CI status](https://github.com/clue/framework-x-website/workflows/Deploy/badge.svg)](https://github.com/clue/framework-x-website/actions)
 
 Source code for the Framework X website.
 
