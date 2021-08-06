@@ -1,6 +1,9 @@
 build:
 	mkdir -p build/src/
 	test -d source/ && git -C source/ pull || git clone git@github.com:clue-access/framework-x.git source/
+	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
+	mkdir -p source/overrides
+	cp overrides/* source/overrides/
 	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material build
 	cp -r source/build/docs/ build/
 	cp index.html build/
