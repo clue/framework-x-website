@@ -14,11 +14,16 @@ out=$(curl -v $base/invalid 2>&1);  match "HTTP/.* 404" && match -i "Content-Typ
 
 out=$(curl -v $base/docs 2>&1);                     match "HTTP/.* 301" && match -iP "Location: .*/docs/[\r\n]"
 out=$(curl -v $base/docs/ 2>&1);                    match "HTTP/.* 302" && match -iP "Location: .*/docs/getting-started/[\r\n]"
+
 out=$(curl -v $base/docs/getting-started/ 2>&1);    match "HTTP/.* 302" && match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
 out=$(curl -v $base/docs/best-practices/ 2>&1);     match "HTTP/.* 302" && match -iP "Location: .*/docs/best-practices/controllers/[\r\n]"
 out=$(curl -v $base/docs/api/ 2>&1);                match "HTTP/.* 302" && match -iP "Location: .*/docs/api/app/[\r\n]"
 out=$(curl -v $base/docs/async/ 2>&1);              match "HTTP/.* 302" && match -iP "Location: .*/docs/async/promises/[\r\n]"
 out=$(curl -v $base/docs/integrations/ 2>&1);       match "HTTP/.* 302" && match -iP "Location: .*/docs/integrations/database/[\r\n]"
 out=$(curl -v $base/docs/more/ 2>&1);               match "HTTP/.* 302" && match -iP "Location: .*/docs/more/philosophy/[\r\n]"
+
+out=$(curl -v $base/index.html 2>&1);                                   match "HTTP/.* 301" && match -iP "Location: .*/[\r\n]"
+out=$(curl -v $base/docs/index.html 2>&1);                              match "HTTP/.* 301" && match -iP "Location: .*/docs/[\r\n]"
+out=$(curl -v $base/docs/getting-started/quickstart/index.html 2>&1);   match "HTTP/.* 301" && match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
 
 echo "OK ($n)"

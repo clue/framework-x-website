@@ -7,3 +7,6 @@ RewriteRule ^docs/api/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}app/ [R]
 RewriteRule ^docs/async/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}promises/ [R]
 RewriteRule ^docs/integrations/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}database/ [R]
 RewriteRule ^docs/more/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}philosophy/ [R]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*/?)index.html$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R=301]
