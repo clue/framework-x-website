@@ -1,13 +1,16 @@
 build:
 	mkdir -p build/src/
-	test -d source/ && git -C source/ pull || git clone git@github.com:clue-access/framework-x.git source/
-	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
+	test -d source/ || $(MAKE) pull
+	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
 	mkdir -p source/overrides
 	cp overrides/* source/overrides/
 	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material build
 	cp -r source/build/docs/ build/
 	cp .htaccess index.html build/
 	cp src/* build/src/
+
+pull:
+	test -d source/ && git -C source/ pull || git clone git@github.com:clue-access/framework-x.git source/
 
 serve: build
 	docker run -it --rm -p 8080:80 -v "$$PWD"/build:/usr/local/apache2/htdocs/ httpd:2.4-alpine sh -c \
@@ -33,4 +36,4 @@ deploy:
 clean:
 	rm -rf source/ build/
 
-.PHONY: build serve served test deploy clean
+.PHONY: build pull serve served test deploy clean
