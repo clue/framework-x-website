@@ -15,6 +15,14 @@ $ make
 > Note that this command will clone Framework X which is currently in early access.
   See https://github.com/clue/framework-x for more details.
 
+If you've pulled Framework X before and want to update its source code, you can
+pull an up-to-date version and rebuild the website like this:
+
+```bash
+$ make pull
+$ make
+```
+
 Once built, you can manually browse the `build/` directory or run the web server
 container (Apache) in the foreground like this:
 
