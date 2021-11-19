@@ -4,7 +4,7 @@ build:
 	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
 	mkdir -p source/overrides
 	cp overrides/* source/overrides/
-	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material build
+	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material:7.3.6 build
 	cp -r source/build/docs/ build/
 	cp .htaccess index.html build/
 	cp src/* build/src/
