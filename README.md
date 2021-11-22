@@ -1,8 +1,11 @@
 # Framework X website
 
 [![CI status](https://github.com/clue/framework-x-website/workflows/Deploy/badge.svg)](https://github.com/clue/framework-x-website/actions)
+![Last deployed on `live`](https://img.shields.io/github/last-commit/clue/framework-x-website/live?label=last%20deployed&logo=github)
 
 Source code for the Framework X website.
+
+See https://github.com/clue/framework-x for more details about Framework X.
 
 ## Build
 
