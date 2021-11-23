@@ -323,9 +323,7 @@ $app->run();
       </div>
 
 <pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">$app->get('/users', function () {
-    // TODO: get users from DB
     $users = [['name' => 'Alice'], ['name' => 'Bob']];
-
     $json = json_encode($users);
 
     return new React\Http\Message\Response(
@@ -1172,7 +1170,7 @@ $app->run();
             Do we really need another framework?
           </dt>
           <dd class="mt-2 text-base text-gray-500">
-            Who likes reinventing the wheel, right?
+            Fair question, who likes reinventing the wheel, right?
             Unless of course, you’re sure you can build a better wheel.
             That’s what we’re doing with Framework X.
             We believe our <a href="#features" class="text-indigo-800 hover:underline">concepts and features</a> are somewhat unique.
@@ -1195,10 +1193,9 @@ $app->run();
             Why don’t you build around existing components?
           </dt>
           <dd class="mt-2 text-base text-gray-500">
-            What makes you think we don’t?
-            Framework X is standing on the shoulders of giants.
-            Building something like Framework X probably wouldn’t be possible if not for the excellent open source projects that it builds on top of.
+            Building something like Framework X probably wouldn’t be possible if not for the excellent open-source projects that it builds on top of.
             In particular, it uses <a href="https://reactphp.org/" class="text-indigo-800 hover:underline">ReactPHP</a> for its fast, event-driven architecture.
+            Framework X is standing on the shoulders of giants.
           </dd>
         </div>
 
@@ -1207,7 +1204,7 @@ $app->run();
             When will the first stable version of Framework X be released?
           </dt>
           <dd class="mt-2 text-base text-gray-500">
-            Guess what: It’s done when it’s done!
+            It’s done when it’s done (<em>sorry</em>)!
             More seriously though, the code is already pretty complete and released as public beta.
             We will use this to process incoming feedback and push Framework X to be even better.
             This shouldn’t take too long (<em>pinky swear</em>!).
@@ -1219,8 +1216,10 @@ $app->run();
             I already use another framework, why should I switch?
           </dt>
           <dd class="mt-2 text-base text-gray-500">
-            I can only assume you skipped our <a href="#features" class="text-indigo-800 hover:underline">concepts and features</a>?
-            We think Framework X is the best solution if you’re looking for simple web APIs, lighting fast execution, reactive and streaming features and async support.
+            If you’re happy, so are we.
+            But a lot of people think there’s room for improvement.
+            That’s what we’re aiming for with our <a href="#features" class="text-indigo-800 hover:underline">concepts and features</a>.
+            We think Framework X is the best solution if you’re looking for simple web APIs, lightning fast execution, reactive features, and async support.
           </dd>
         </div>
 
