@@ -119,10 +119,10 @@
     <div class="pr-16 sm:text-center sm:px-16">
       <p class="font-medium text-white">
         <span>
-          Big news! We're excited to launch our public beta on Tuesday!
+          Big news! We're excited to announce our public beta!
         </span>
         <span class="block sm:ml-2 sm:inline-block">
-          <a href="https://github.com/clue-access/clue-access" class="text-white font-bold underline"> Get early access <span aria-hidden="true">&rarr;</span></a>
+          <a href="https://github.com/clue/framework-x" class="text-white font-bold underline"> Framework X on GitHub <span aria-hidden="true">&rarr;</span></a>
         </span>
       </p>
     </div>
@@ -823,17 +823,33 @@ Hello world!
         Get started in seconds
       </p>
       <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-        First manually change your <code class="bg-gray-100 px-2 py-1">composer.json</code> to include these lines:
+        We can start by taking a look at a simple example application. 
+        You can use this example to get started by creating a new <code>public/</code> directory with an <code>index.php</code> file inside:
       </p>
     </div>
-<pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/clue-access/framework-x"
-        }
-    ]
-}
+<pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">&lt;?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = new FrameworkX\App();
+
+$app->get('/', function () {
+    return new React\Http\Message\Response(
+        200,
+        [],
+        "Hello wörld!\n"
+    );
+});
+
+$app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $request) {
+    return new React\Http\Message\Response(
+        200,
+        [],
+        "Hello " . $request->getAttribute('name') . "!\n"
+    );
+});
+
+$app->run();
 </code></pre> 
   </div>
 </section>
@@ -846,16 +862,25 @@ Hello world!
   </div>
 <pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">$ composer require clue/framework-x:dev-main
 </code></pre> 
+</section>
+
+<section class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
   <div>
+    <p class="mt-20 mb-10 max-w-prose mx-auto text-xl text-gray-500">
+      That's it already! You can now run the above example using any existing web server – or even more impressive: using the built-in web server like this:
+    </p>
+  </div>
+<pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">$ php public/index.php
+</code></pre> 
     <p class="mt-10 mb-10 max-w-prose mx-auto text-xl text-gray-500">
-      That's it already!
-      If you also can't wait to finally try it out, get early access to Framework X.
+      And that’s all it takes! X will now listen for incoming requests using its efficient built-in web server.
+      Can’t wait to try it out?
     </p>
   </div>
   <div class="pb-24 mt-8 flex justify-center">
     <div class="inline-flex rounded-md shadow">
-      <a href="https://github.com/clue-access/clue-access" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-        Get early access
+      <a href="https://github.com/clue/framework-x" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+        Get Framework X
       </a>
     </div>
     <div class="ml-3 inline-flex">
@@ -876,8 +901,8 @@ Hello world!
       <div class="relative z-10 max-w-prose mx-auto">
         <div class="prose prose-indigo text-gray-300 mx-auto lg:max-w-none">
           <p>
-            Framework X will be released as open-source under the permissive MIT license.
-            This means it will be free as in <em>free speech</em> and as in <em>free beer</em>.
+            Framework X is released as open-source under the permissive MIT license.
+            This means it is free as in <em>free speech</em> and as in <em>free beer</em>.
           </p>
           <p class="mt-4">
             We believe in open source and made a conscious decision to take this path.
@@ -1071,8 +1096,8 @@ Hello world!
               </div>
               <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Free community support</h3>
               <p class="mt-5 text-base text-left text-gray-500">
-                We will provide ways to allow users of Framework X to easily exchange information and ideas with each other.
-                Once released, we will offer a discussion and chat platform to provide direct community support.
+                We provide ways to allow users of Framework X to easily exchange information and ideas with each other.
+                We offer a <a href="#community" class="text-indigo-800 hover:underline">discussion and chat platform</a> to provide direct community support.
               </p>
             </div>
           </div>
@@ -1091,7 +1116,7 @@ Hello world!
               </div>
               <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Get involved</h3>
               <p class="mt-5 text-base text-left text-gray-500">
-                Framework X will be released under the permissive MIT license.
+                Framework X is released under the permissive MIT license.
                 You can have an impact on the further development of Framework X at any time.
                 Join in, tell us about your ideas and leave your fingerprint.
               </p>
@@ -1179,13 +1204,13 @@ Hello world!
 
         <div>
           <dt class="text-lg leading-6 font-medium text-gray-900">
-            When will Framework X be released?
+            When will the first stable version of Framework X be released?
           </dt>
           <dd class="mt-2 text-base text-gray-500">
             Guess what: It’s done when it’s done!
-            More seriously though, the code is pretty much complete already and is currently undergoing in-depth stress tests.
+            More seriously though, the code is already pretty complete and released as public beta.
+            We will use this to process incoming feedback and push Framework X to be even better.
             This shouldn’t take too long (<em>pinky swear</em>!).
-            We’re <a href="#cooperation" class="text-indigo-800 hover:underline">looking for beta users</a>, sounds interesting?
           </dd>
         </div>
 
