@@ -1,7 +1,7 @@
 # Framework X website
 
 [![CI status](https://github.com/clue/framework-x-website/workflows/Deploy/badge.svg)](https://github.com/clue/framework-x-website/actions)
-![Last deployed on `live`](https://img.shields.io/github/last-commit/clue/framework-x-website/live?label=last%20deployed&logo=github)
+[![Last deployed on `live`](https://img.shields.io/github/last-commit/clue/framework-x-website/live?label=last%20deployed&logo=github)](https://github.com/clue/framework-x-website/tree/live)
 
 Source code for the Framework X website.
 
