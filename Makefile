@@ -10,7 +10,7 @@ build:
 	cp src/* build/src/
 
 pull:
-	test -d source/ && git -C source/ pull || git clone git@github.com:clue-access/framework-x.git source/
+	test -d source/ && git -C source/ pull || git clone git@github.com:clue/framework-x.git source/
 
 serve: build
 	docker run -it --rm -p 8080:80 -v "$$PWD"/build:/usr/local/apache2/htdocs/ httpd:2.4-alpine sh -c \

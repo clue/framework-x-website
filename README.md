@@ -15,9 +15,6 @@ You can build the website like this:
 $ make
 ```
 
-> Note that this command will clone Framework X which is currently in early access.
-  See https://github.com/clue/framework-x for more details.
-
 If you've pulled Framework X before and want to update its source code, you can
 pull an up-to-date version and rebuild the website like this:
 
@@ -72,10 +69,3 @@ The website can be automatically deployed via the GitHub Pages feature.
 Any time a commit is merged (such as when a PR is merged), GitHub actions will
 automatically build and deploy the website. This is done by running the above
 deployment script (see previous chapter).
-
-> Repository setup:
-> Note that this command will clone Framework X which is currently in early access.
-> We're using a read-only SSH deploy key for reading from this source repository.
-> Make sure the required `DEPLOY_KEY` secret is set in the repository settings on GitHub.
-> See [action documentation](https://github.com/JamesIves/github-pages-deploy-action#using-an-ssh-deploy-key-)
-> for more details.
