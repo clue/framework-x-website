@@ -1,0 +1,1757 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://framework-x.org/docs/integrations/database/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Database - Framework X documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      <script async defer data-domain="framework-x.clue.engineering" src="https://plausible.io/js/plausible.js"></script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="Framework X documentation" class="md-header__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Framework X documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Framework X documentation" class="md-nav__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Framework X documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        Quickstart in 5 minutes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/philosophy/" class="md-nav__link">
+        Our philosophy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Best Practices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Best Practices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Best Practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/controllers/" class="md-nav__link">
+        Controller classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/deployment/" class="md-nav__link">
+        Production deployment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/app/" class="md-nav__link">
+        App
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/middleware/" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/request/" class="md-nav__link">
+        Request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/response/" class="md-nav__link">
+        Response
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Async
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Async" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Async
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/fibers/" class="md-nav__link">
+        Fibers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/coroutines/" class="md-nav__link">
+        Coroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Database
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Database
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
+  </a>
+  
+    <nav class="md-nav" aria-label="Quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-async" class="md-nav__link">
+    Why async?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fibers-coroutines-promises" class="md-nav__link">
+    Fibers / Coroutines / Promises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-adapters" class="md-nav__link">
+    Database adapters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbal" class="md-nav__link">
+    DBAL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    Best practices
+  </a>
+  
+    <nav class="md-nav" aria-label="Best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-class-structure" class="md-nav__link">
+    Recommended class structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-pools" class="md-nav__link">
+    Connection pools
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../filesystem/" class="md-nav__link">
+        ⚠ Filesystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../child-processes/" class="md-nav__link">
+        ⚠ Child processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming/" class="md-nav__link">
+        ⚠ Streaming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        ⚠ Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sessions/" class="md-nav__link">
+        ⚠ Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        ⚠ Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queueing/" class="md-nav__link">
+        ⚠ Queueing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
+  </a>
+  
+    <nav class="md-nav" aria-label="Quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-async" class="md-nav__link">
+    Why async?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fibers-coroutines-promises" class="md-nav__link">
+    Fibers / Coroutines / Promises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-adapters" class="md-nav__link">
+    Database adapters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbal" class="md-nav__link">
+    DBAL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    Best practices
+  </a>
+  
+    <nav class="md-nav" aria-label="Best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-class-structure" class="md-nav__link">
+    Recommended class structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-pools" class="md-nav__link">
+    Connection pools
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clue/framework-x/edit/main/docs/integrations/database.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h1>
+<p>One of the most commonly used functionality in web APIs is database access.
+X supports efficient and fast database access by using async database APIs.</p>
+<h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
+<p>Let's take a look at the most basic async database integration possible with X:</p>
+<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Fibers</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">use</span> <span class="k">function</span> <span class="nf">React\Async\await</span><span class="p">;</span>
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nx">await</span><span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT COUNT(*) AS count FROM book&#39;</span>
+    <span class="p">));</span>
+
+    <span class="nv">$data</span> <span class="o">=</span> <span class="s2">&quot;Found &quot;</span> <span class="o">.</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot; books</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[],</span>
+        <span class="nv">$data</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Coroutines</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="k">yield</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT COUNT(*) AS count FROM book&#39;</span>
+    <span class="p">);</span>
+
+    <span class="nv">$data</span> <span class="o">=</span> <span class="s2">&quot;Found &quot;</span> <span class="o">.</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot; books</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[],</span>
+        <span class="nv">$data</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Promises</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT COUNT(*) AS count FROM book&#39;</span>
+    <span class="p">)</span><span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">React\MySQL\QueryResult</span> <span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="s2">&quot;Found &quot;</span> <span class="o">.</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot; books</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+            <span class="mi">200</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="nv">$data</span>
+        <span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span><span class="o">:</span>
+</code></pre></div>
+</div>
+</div>
+<p>As you can see, using an async database adapter in X is very similar to using
+a normal, synchronous database adapter such as PDO.</p>
+<h3 id="why-async">Why async?<a class="headerlink" href="#why-async" title="Permanent link">&para;</a></h3>
+<p><strong>Because performance.</strong>
+Using async, non-blocking APIs allows much faster response times by doing
+multiple things at once, instead of having to do one thing after another. This
+can be seen when we process multiple concurrent operations at once (such as
+sending queries to multiple databases or concurrent HTTP requests) or when
+using the built-in web server which can process thousands of requests at the
+same time.</p>
+<p>Especially with Fibers, using async database APIs should be no more complicated
+than their slower, synchronous counterparts. So the real question should be:
+<em>Why not?</em></p>
+<h3 id="fibers-coroutines-promises">Fibers / Coroutines / Promises<a class="headerlink" href="#fibers-coroutines-promises" title="Permanent link">&para;</a></h3>
+<p>The database examples showcase the three different ways to consume async APIs.
+There are different reasons to pick one over the other, here's a quick overview
+to help you decide.</p>
+<ul>
+<li>
+<p><strong>Fibers</strong> allow consuming async APIs using a synchronous code flow. The
+  <code>await()</code> function can be used to "await" a promise or to "unwrap" its resolution
+  value. Fibers are a core ingredient of PHP 8.1+, but the same syntax also
+  works on older PHP versions to some degree if you only have limited concurrency.
+  See also <a href="../../async/fibers/">Fibers</a> for more details.</p>
+</li>
+<li>
+<p><strong>Coroutines</strong> allow consuming async APIs in a way that resembles a synchronous
+  code flow. The <code>yield</code> keyword function can be used to "await" a promise or to
+  "unwrap" its resolution value. Internally, this turns the entire function into
+  a <code>Generator</code> which does affect the way return values need to be accessed.
+  See also <a href="../../async/coroutines/">Coroutines</a> for more details.</p>
+</li>
+<li>
+<p><strong>Promises</strong> are a core building block used in all our async APIs. They are
+  especially useful if want to express a concurrent code flow. You can directly
+  use their API for maximum performance or use Fibers or Coroutines as an easier
+  way to work with async APIs.
+  See also <a href="../../async/promises/">Promises</a> for more details.</p>
+</li>
+</ul>
+<p><strong>Which style is better?</strong>
+We like choice.
+Feel free to use whatever style works best for you.</p>
+<h2 id="database-adapters">Database adapters<a class="headerlink" href="#database-adapters" title="Permanent link">&para;</a></h2>
+<p>Using another database? Don't worry. ReactPHP provides support for major
+database vendors through a number of ready-to-use packages:</p>
+<ul>
+<li><a href="https://github.com/friends-of-reactphp/mysql">MySQL</a></li>
+<li><a href="https://github.com/voryx/PgAsync">Postgres</a></li>
+<li><a href="https://github.com/clue/reactphp-sqlite">SQLite</a></li>
+<li><a href="https://github.com/clue/reactphp-redis">Redis</a></li>
+<li><a href="https://github.com/clue/reactphp-clickhouse">ClickHouse</a></li>
+<li>And <a href="https://github.com/reactphp/reactphp/wiki/Users#databases">more</a>…</li>
+</ul>
+<p>Installing a new database adapter is usually as simple as executing a single
+<code>composer require</code> call. Most implementations are written in pure PHP and do not
+require any extensions.</p>
+<p>All adapters provide similar APIs that allow async access to the given database.
+In this documentation, we focus on MySQL because it is one of the more common
+database choices for web development, but the same ideas also apply to all other
+database implementations.</p>
+<blockquote>
+<p>ℹ️ <strong>Legacy, blocking database access?</strong></p>
+<p>For performance reasons, we highly recommend using async database APIs as
+described above. For legacy integrations, we provide limited support for
+blocking database calls such as PDO, Doctrine, etc., but as a rule of thumb,
+going for an async alternative is usually somewhat more efficient.
+See <a href="../child-processes/">child processes</a> for more details.</p>
+</blockquote>
+<h2 id="dbal">DBAL<a class="headerlink" href="#dbal" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⚠️ <strong>Feature preview</strong></p>
+<p>This is a feature preview, i.e. it might not have made it into the current beta.
+Give feedback to help us prioritize.
+We also welcome <a href="../../getting-started/community/">contributors</a> to help out!</p>
+</blockquote>
+<p>There is ongoing effort to provide an async DBAL (DataBase Abstraction Layer)
+that will allow you to write your logic in such a way that it is not tied to a
+specific database adapter.</p>
+<p>Among others, this will make it easier to support multiple database adapters in
+a single code base, which is particularly useful for reusable components such as
+<a href="../../api/middleware/">middleware classes</a>. You may also use this to configure
+different database adapters for testing purposes (such as using SQLite for
+integration tests and using MySQL in production).</p>
+<p>At the moment, we recommend using one of the above database adapters directly.
+Looking forward, the idea is to add an abstraction that uses a common API and
+provides a native integration with these adapters. Accordingly, switching to the
+new DBAL APIs should only be a matter of a few minutes, not hours. Expect more
+details later this year.</p>
+<p>On top of this, there are ideas to build an ORM (Object-Relational Mapping) in
+the future. More details will follow.</p>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="query-parameters">Query parameters<a class="headerlink" href="#query-parameters" title="Permanent link">&para;</a></h3>
+<p>We highly recommend using SQL statements with placeholders for query parameters
+instead of manually building SQL statements by concatenating quoted strings. For
+most database adapters, this would be faster, provide additional guarantees
+against possible SQL injection attacks, and also make the SQL statement easier
+to understand.</p>
+<p>As a common example, we can accept a <a href="../../api/request/#attributes">request attribute</a>
+from a <a href="../../api/app/#routing">route placeholder</a> like this:</p>
+<div class="tabbed-set" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Fibers</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">use</span> <span class="k">function</span> <span class="nf">React\Async\await</span><span class="p">;</span>
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book/{isbn}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nx">await</span><span class="p">(</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+    <span class="p">));</span>
+    <span class="nb">assert</span><span class="p">(</span><span class="nv">$result</span> <span class="nx">instanceof</span> <span class="nx">React\MySQL\QueryResult</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+            <span class="mi">404</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[],</span>
+        <span class="nv">$data</span>
+    <span class="p">);</span>
+
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Coroutines</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book/{isbn}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="k">yield</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+    <span class="p">);</span>
+    <span class="nb">assert</span><span class="p">(</span><span class="nv">$result</span> <span class="nx">instanceof</span> <span class="nx">React\MySQL\QueryResult</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+            <span class="mi">404</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[],</span>
+        <span class="nv">$data</span>
+    <span class="p">);</span>
+
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Promises</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\MySQL\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/book/{isbn}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+        <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">React\MySQL\QueryResult</span> <span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+                <span class="mi">404</span><span class="p">,</span>
+                <span class="p">[],</span>
+                <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+            <span class="mi">200</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="nv">$data</span>
+        <span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+</div>
+</div>
+<h3 id="recommended-class-structure">Recommended class structure<a class="headerlink" href="#recommended-class-structure" title="Permanent link">&para;</a></h3>
+<p>The above examples use inline closure definitions to ease getting started, but
+it's also easy to see how this will get out of hand for more complex business
+domains when you have more than a couple of routes registered.</p>
+<p>For real-world applications, we highly recommend structuring your application
+into individual <a href="../../best-practices/controllers/">controller classes</a>. This
+way, we can break up this logic into multiple smaller files, that are easier to
+work with, easier to test in isolation, and easier to reason about.</p>
+<p>As a starting point, we recommend the following class and directory structure:</p>
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   └── index.php
+├── src/
+│   ├── Book.php
+│   ├── BookRepository.php
+│   └── BookLookupController.php
+├── vendor/
+├── composer.json
+└── composer.lock
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>We ❤️ Domain-Driven Design</strong></p>
+<p>We're big fans of DDD (Domain-Driven Design), which basically is a fancy way
+of saying: The design of your application should be driven by your business
+domain requirements, not by some arbitrary technical constraints.</p>
+<p>In this instance, this means we're breaking up the database logic into their
+logic parts and using a repository pattern to isolate the entity (<code>Book</code>) from
+the database logic (<code>BookRepository</code>) and from the request logic (<code>BookLookupController</code>).</p>
+<p>For newcomers, this may sound like a lot of code at first but actually helps
+reduce clutter down the line. But don't worry, X does not enforce a particular
+style, so none of this is strictly required. Use your own best judgment,
+see <a href="../../best-practices/controllers/">controller classes</a> for more details.</p>
+</blockquote>
+<p>The main entry point <a href="../../api/app/#routing">registers a route</a> for our
+controller and uses dependency injection (DI) to connect all classes:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="nv">$credentials</span> <span class="o">=</span> <span class="s1">&#39;alice:secret@localhost/bookstore?idle=0.001&#39;</span><span class="p">;</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">React\Mysql\Factory</span><span class="p">(</span><span class="nv">$loop</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">createLazyConnection</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">);</span>
+<span class="nv">$repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Acme\Todo\BookRepository</span><span class="p">(</span><span class="nv">$db</span><span class="p">);</span>
+
+<span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FrameworkX\App</span><span class="p">();</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="err">&#39;</span><span class="o">/</span><span class="nx">book</span><span class="o">/</span><span class="p">{</span><span class="nx">isbn</span><span class="p">},</span> <span class="k">new</span> <span class="nx">Acme\Todo\BookLookupController</span><span class="p">(</span><span class="nv">$repository</span><span class="p">));</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
+</code></pre></div>
+<p>The main entity we're dealing with in this example is a plain PHP class which
+makes it super easy to write and to use in our code:</p>
+<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Readonly constructor property (PHP 8.1+)</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">src/Book.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Book</span>
+<span class="p">{</span>
+
+
+
+
+
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">public</span> <span class="nx">readonly</span> <span class="nx">string</span> <span class="nv">$title</span><span class="p">)</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Typed property (PHP 7.4+)</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">src/Book.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Book</span>
+<span class="p">{</span>
+
+
+
+    <span class="sd">/** @readonly **/</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$title</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$title</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Old school property</label><div class="tabbed-content">
+<div class="highlight"><span class="filename">src/Book.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Book</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @var string</span>
+<span class="sd">     * @readonly</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="nv">$title</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$title</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$title</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+<p>The database logic and request handling is separated into two classes that
+interface with each other using a simple async API:</p>
+<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Fibers</label><div class="tabbed-content">
+<p><div class="highlight"><span class="filename">src/BookRepository.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">React\MySQL\ConnectionInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\MySQL\QueryResult</span><span class="p">;</span>
+<span class="k">use</span> <span class="k">function</span> <span class="nf">React\Async\await</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookRepository</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$db</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ConnectionInterface</span> <span class="nv">$db</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span> <span class="o">=</span> <span class="nv">$db</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findBook</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$isbn</span><span class="p">)</span><span class="o">:</span> <span class="o">?</span><span class="nx">Book</span>
+    <span class="p">{</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nx">await</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+            <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+        <span class="p">));</span>
+        <span class="nb">assert</span><span class="p">(</span><span class="nv">$result</span> <span class="nx">instanceof</span> <span class="nx">QueryResult</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">src/BookLookupController.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ResponseInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ServerRequestInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Http\Message\Response</span><span class="p">;</span>
+
+
+<span class="k">class</span> <span class="nc">BookLookupController</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$repository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">BookRepository</span> <span class="nv">$repository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span> <span class="o">=</span> <span class="nv">$repository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">ResponseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+        <span class="nv">$book</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">findBook</span><span class="p">(</span><span class="nv">$isbn</span><span class="p">);</span>
+
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$book</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+                <span class="mi">404</span><span class="p">,</span>
+                <span class="p">[],</span>
+                <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$book</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+            <span class="mi">200</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="nv">$data</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Coroutines</label><div class="tabbed-content">
+<p><div class="highlight"><span class="filename">src/BookRepository.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">React\MySQL\ConnectionInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\MySQL\QueryResult</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Promise\PromiseInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookRepository</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$db</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ConnectionInterface</span> <span class="nv">$db</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span> <span class="o">=</span> <span class="nv">$db</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/** @return \Generator&lt;mixed,PromiseInterface,mixed,?Book&gt; **/</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findBook</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$isbn</span><span class="p">)</span><span class="o">:</span> <span class="nx">\Generator</span>
+    <span class="p">{</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="k">yield</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+            <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+        <span class="p">);</span>
+        <span class="nb">assert</span><span class="p">(</span><span class="nv">$result</span> <span class="nx">instanceof</span> <span class="nx">QueryResult</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">src/BookLookupController.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ResponseInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ServerRequestInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Http\Message\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Promise\PromiseInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookLookupController</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$repository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">BookRepository</span> <span class="nv">$repository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span> <span class="o">=</span> <span class="nv">$repository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/** @return \Generator&lt;mixed,PromiseInterface,mixed,ResponseInterface&gt; **/</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">\Generator</span>
+    <span class="p">{</span>
+        <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+        <span class="nv">$book</span> <span class="o">=</span> <span class="k">yield</span> <span class="nx">from</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">findBook</span><span class="p">(</span><span class="nv">$isbn</span><span class="p">);</span>
+        <span class="nb">assert</span><span class="p">(</span><span class="nv">$book</span> <span class="o">===</span> <span class="k">null</span> <span class="o">||</span> <span class="nv">$book</span> <span class="nx">instanceof</span> <span class="nx">Book</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$book</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+                <span class="mi">404</span><span class="p">,</span>
+                <span class="p">[],</span>
+                <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$book</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+            <span class="mi">200</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="nv">$data</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Promises</label><div class="tabbed-content">
+<p><div class="highlight"><span class="filename">src/BookRepository.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">React\MySQL\ConnectionInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\MySQL\QueryResult</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Promise\PromiseInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookRepository</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$db</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">ConnectionInterface</span> <span class="nv">$db</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span> <span class="o">=</span> <span class="nv">$db</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/** @return PromiseInterface&lt;?Book&gt; **/</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findBook</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$isbn</span><span class="p">)</span><span class="o">:</span> <span class="nx">PromiseInterface</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span>
+            <span class="s1">&#39;SELECT title FROM book WHERE isbn = ?&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="nv">$isbn</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">QueryResult</span> <span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+            <span class="p">}</span>
+
+
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Book</span><span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">resultRows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">src/BookLookupController.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\Todo</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ResponseInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Psr\Http\Message\ServerRequestInterface</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Http\Message\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">React\Promise\PromiseInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BookLookupController</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$repository</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">BookRepository</span> <span class="nv">$repository</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span> <span class="o">=</span> <span class="nv">$repository</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/** @return PromiseInterface&lt;ResponseInterface&gt; **/</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">PromiseInterface</span>
+    <span class="p">{</span>
+        <span class="nv">$isbn</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;isbn&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">repository</span><span class="o">-&gt;</span><span class="na">findBook</span><span class="p">(</span><span class="nv">$isbn</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">then</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="o">?</span><span class="nx">Book</span> <span class="nv">$book</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$book</span> <span class="o">===</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+                    <span class="mi">404</span><span class="p">,</span>
+                    <span class="p">[],</span>
+                    <span class="s2">&quot;Book not found</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$book</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+                <span class="mi">200</span><span class="p">,</span>
+                <span class="p">[],</span>
+                <span class="nv">$data</span>
+            <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</div>
+</div>
+<p>That's it. We do realize that this looks like a lot of classes, but if you take
+a look at the code in each class, you'll find that most of this is actually
+pretty straightforward. Both the logic and the code structure itself are pretty
+obvious and easy to reason about and improve upon when more features are added.</p>
+<p>As a next step, we would highly recommend looking into
+<a href="../../best-practices/testing/">testing</a>. Because we've broken down the logic
+into very small units, it should be easy to write unit tests that allow us to
+cover 100% of our logic. See <a href="../../best-practices/testing/">testing</a> for more
+details.</p>
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   └── index.php
+├── src/
+│   ├── Book.php
+│   ├── BookRepository.php
+│   └── BookLookupController.php
+<span class="hll">├── tests/
+</span><span class="hll">│   ├── BookTest.php
+</span><span class="hll">│   ├── BookRepositoryTest.php
+</span><span class="hll">│   └── BookLookupControllerTest.php
+</span>├── vendor/
+├── composer.json
+└── composer.lock
+</code></pre></div>
+<p>The above structure is what we recommend as a starting point if you're unsure.
+Once your application starts growing, you will likely want to introduce
+additional layers to group logic and make cohesion between different classes
+more obvious. There are multiple ways to go about this, but here are two common
+structures to get you started:</p>
+<div class="tabbed-set" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">Group by domain</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   └── index.php
+├── src/
+<span class="hll">│   ├── Book/
+</span>│   │   ├── Book.php
+│   │   ├── BookRepository.php
+│   │   └── BookLookupController.php
+<span class="hll">│   └── User/
+</span>│       ├── User.php
+│       ├── UserRepository.php
+│       └── UserLookupController.php
+│
+├── vendor/
+├── composer.json
+└── composer.lock
+</code></pre></div>
+</div>
+<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">Group by functionality</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   └── index.php
+├── src/
+<span class="hll">│   ├── Controllers/
+</span>│   │   ├── BookLookupController.php
+│   │   └── UserLookupController.php
+<span class="hll">│   ├── Entities/
+</span>│   │   ├── Book.php
+│   │   └── User.php
+<span class="hll">│   └── Repositories/
+</span>│       ├── BookRepository.php
+│       └── UserRepository.php
+├── vendor/
+├── composer.json
+└── composer.lock
+</code></pre></div>
+</div>
+</div>
+<h3 id="connection-pools">Connection pools<a class="headerlink" href="#connection-pools" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>⚠️ <strong>Feature preview</strong></p>
+<p>This is a feature preview, i.e. it might not have made it into the current beta.
+Give feedback to help us prioritize.
+We also welcome <a href="../../getting-started/community/">contributors</a> to help out!</p>
+</blockquote>
+<p>If you're using X behind a <a href="../../best-practices/deployment/#traditional-stacks">traditional web server</a>,
+there's nothing to worry about: PHP will process a single request and then clean
+up afterward (shared-nothing architecture). Likewise, any database connection
+will be created as part of the request handling and will be closed after the
+request has been handled. Because the number of parallel PHP processes is
+limited (usually through a PHP-FPM configuration), this also ensures the number
+of concurrent database connections is limited.</p>
+<p>If you're using X with its <a href="../../best-practices/deployment/#built-in-web-server">built-in web server</a>,
+things behave differently: a single PHP process will take care of handling any
+number of requests concurrently. Because this process is kept running, this
+means we can reuse state such as database connections. This provides a
+significant performance boost as we do not have to recreate the connection and
+exchange authentication credentials for each request. As such, using the
+built-in web server gives you more options on how to handle these database
+connections.</p>
+<ul>
+<li>
+<p>Set up a database connection for each request and clean up afterward: Same
+  characteristics as traditional shared-nothing architecture. Needs to juggle
+  with multiple database connection objects and missing out on significant
+  performance boost.</p>
+</li>
+<li>
+<p>Create a single database connection and reuse this across multiple requests:
+  Significantly less connection setup and promises noticeable performance boost.
+  However, database queries will be processed in order over a single connection
+  and a single slow query may thus negatively impact all following queries
+  (<a href="https://en.wikipedia.org/wiki/Head-of-line_blocking">Head-of-line blocking</a>).</p>
+</li>
+</ul>
+<p>The best compromise between both extremes is a database connection pool: Your
+code interfaces with a single database connection object that will automatically
+create a limited number of underlying database connections as needed.</p>
+<p>There is ongoing effort to provide built-in support for database connection
+pools for all database adapters, possible through the async DBAL described
+above. Once ready, switching to the connection pool should only be a matter of
+minutes, not hours. Expect more details later this year.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../async/promises/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Promises" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Promises
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../filesystem/" class="md-footer__link md-footer__link--next" aria-label="Next: ⚠ Filesystem" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              ⚠ Filesystem
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

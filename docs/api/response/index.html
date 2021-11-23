@@ -1,0 +1,1385 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://framework-x.org/docs/api/response/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Response - Framework X documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      <script async defer data-domain="framework-x.clue.engineering" src="https://plausible.io/js/plausible.js"></script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#response" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="Framework X documentation" class="md-header__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Framework X documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Response
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Framework X documentation" class="md-nav__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Framework X documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        Quickstart in 5 minutes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/philosophy/" class="md-nav__link">
+        Our philosophy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Best Practices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Best Practices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Best Practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/controllers/" class="md-nav__link">
+        Controller classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/deployment/" class="md-nav__link">
+        Production deployment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app/" class="md-nav__link">
+        App
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../request/" class="md-nav__link">
+        Request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Response
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Response
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#html" class="md-nav__link">
+    HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-codes" class="md-nav__link">
+    Status Codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    Headers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-caching" class="md-nav__link">
+    HTTP caching
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-control" class="md-nav__link">
+    Cache-Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etag" class="md-nav__link">
+    ETag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-modified" class="md-nav__link">
+    Last-Modified
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-buffering" class="md-nav__link">
+    Output buffering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-server-error" class="md-nav__link">
+    Internal Server Error
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Async
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Async" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Async
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/fibers/" class="md-nav__link">
+        Fibers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/coroutines/" class="md-nav__link">
+        Coroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/database/" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/filesystem/" class="md-nav__link">
+        ⚠ Filesystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/child-processes/" class="md-nav__link">
+        ⚠ Child processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/streaming/" class="md-nav__link">
+        ⚠ Streaming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/authentication/" class="md-nav__link">
+        ⚠ Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/sessions/" class="md-nav__link">
+        ⚠ Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/templates/" class="md-nav__link">
+        ⚠ Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/queueing/" class="md-nav__link">
+        ⚠ Queueing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#html" class="md-nav__link">
+    HTML
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-codes" class="md-nav__link">
+    Status Codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    Headers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-caching" class="md-nav__link">
+    HTTP caching
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cache-control" class="md-nav__link">
+    Cache-Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etag" class="md-nav__link">
+    ETag
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-modified" class="md-nav__link">
+    Last-Modified
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-buffering" class="md-nav__link">
+    Output buffering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-server-error" class="md-nav__link">
+    Internal Server Error
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clue/framework-x/edit/main/docs/api/response.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h1>
+<p>Whenever the client sends an HTTP request to our application,
+we need to send back an HTTP response message.</p>
+<p>We love standards and want to make using X as simple as possible.
+That's why we build on top of the established <a href="https://www.php-fig.org/psr/psr-7/">PSR-7 standard</a>
+(HTTP message interfaces).
+This standard defines common interfaces for HTTP request and response objects.</p>
+<p>If you've ever used PSR-7 before, you should immediately feel at home when using X.
+If you're new to PSR-7, don't worry.
+Here's everything you need to know to get started.</p>
+<blockquote>
+<p>ℹ️ <strong>A note about other PSR-7 implementations</strong></p>
+<p>All of the examples in this documentation use the
+<a href="https://reactphp.org/http/#response"><code>React\Http\Message\Response</code></a> class
+because this comes bundled as part of our dependencies.
+If you have more specific requirements or want to integrate this with an
+existing piece of code, you can use any response implementation as long as
+it implements the <a href="https://www.php-fig.org/psr/psr-7/#33-psrhttpmessageresponseinterface"><code>Psr\Http\Message\ResponseInterface</code></a>.</p>
+</blockquote>
+<h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
+<p>You can send JSON data as an HTTP response body like this:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user&#39;, function () {</span>
+<span class="x">    $data = [</span>
+<span class="x">        [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;Alice&#39;</span>
+<span class="x">        ],</span>
+<span class="x">        [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;Bob&#39;</span>
+<span class="x">        ]</span>
+<span class="x">    ];</span>
+
+<span class="x">    return new React\Http\Message\Response(</span>
+<span class="x">        200,</span>
+<span class="x">        [&#39;Content-Type&#39; =&gt; &#39;application/json&#39;],</span>
+<span class="x">        json_encode($data)</span>
+<span class="x">    );</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+<span class="o">[{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Alice&quot;</span><span class="o">}</span>,<span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Bob&quot;</span><span class="o">}]</span>
+</code></pre></div>
+<p>If you want to return pretty-printed JSON, all you need to do is passing the
+correct flags when encoding:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user&#39;, function () {</span>
+<span class="x">    $data = [</span>
+<span class="x">        [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;Alice&#39;</span>
+<span class="x">        ],</span>
+<span class="x">        [</span>
+<span class="x">            &#39;name&#39; =&gt; &#39;Bob&#39;</span>
+<span class="x">        ]</span>
+<span class="x">    ];</span>
+
+<span class="x">    return new React\Http\Message\Response(</span>
+<span class="x">        200,</span>
+<span class="x">        [&#39;Content-Type&#39; =&gt; &#39;application/json&#39;],</span>
+<span class="hll"><span class="x">        json_encode(</span>
+</span><span class="hll"><span class="x">            $data,</span>
+</span><span class="hll"><span class="x">            JSON_PRETTY_PRINT |  JSON_UNESCAPED_SLASHES |  JSON_UNESCAPED_UNICODE</span>
+</span><span class="hll"><span class="x">        )</span>
+</span><span class="x">    );</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Alice&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;Bob&quot;</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div>
+<p>This example returns a simple JSON response from some static data.
+In real-world applications, you may want to load this from a
+<a href="../../integrations/database/">database</a>.
+For common API usage, you may also want to receive a <a href="../request/#json">JSON request</a>.</p>
+<h2 id="html">HTML<a class="headerlink" href="#html" title="Permanent link">&para;</a></h2>
+<p>You can send HTML data as an HTTP response body like this:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user&#39;, function () {</span>
+<span class="x">    $html = &lt;&lt;&lt;HTML</span>
+<span class="x">&lt;h1&gt;Hello Alice&lt;/h1&gt;</span>
+<span class="x">HTML;</span>
+
+<span class="x">    return new React\Http\Message\Response(</span>
+<span class="x">        200,</span>
+<span class="x">        [&#39;Content-Type&#39; =&gt; &#39;text/html; charset=utf-8&#39;],</span>
+<span class="x">        $html</span>
+<span class="x">    );</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+&lt;h1&gt;Hello Alice&lt;/h1&gt;
+</code></pre></div>
+<p>This example returns a simple HTML response from some static data.
+In real-world applications, you may want to load this from a
+<a href="../../integrations/database/">database</a> and perhaps use
+<a href="../../integrations/templates/">templates</a> to render your HTML.</p>
+<h2 id="status-codes">Status Codes<a class="headerlink" href="#status-codes" title="Permanent link">&para;</a></h2>
+<p>You can assign status codes like this:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user/{id}&#39;, function (Psr\Http\Message\ServerRequestInterface $request) {</span>
+<span class="x">    $id = $request-&gt;getAttribute(&#39;id&#39;);</span>
+<span class="x">    if ($id === &#39;admin&#39;) {</span>
+<span class="x">        return new React\Http\Message\Response(</span>
+<span class="hll"><span class="x">            403,</span>
+</span><span class="x">            [],</span>
+<span class="x">            &#39;Forbidden&#39;</span>
+<span class="x">        );</span>
+<span class="x">    }</span>
+
+<span class="x">    return new React\Http\Message\Response(</span>
+<span class="hll"><span class="x">        200,</span>
+</span><span class="x">        [],</span>
+<span class="x">        &quot;Hello $id&quot;</span>
+<span class="x">    );</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl -I http://localhost:8080/user/Alice
+<span class="hll">HTTP/1.1 <span class="m">200</span> OK
+</span>…
+
+$ curl -I http://localhost:8080/user/admin
+<span class="hll">HTTP/1.1 <span class="m">403</span> Forbidden
+</span>…
+</code></pre></div>
+<p>Each HTTP response message contains a status code that describes whether the
+HTTP request has been successfully completed.
+Here's a list of the most common HTTP status codes:</p>
+<ul>
+<li><code>200 OK</code></li>
+<li><code>301 Permanent Redirect</code></li>
+<li><code>302 Found</code> (previously <code>302 Temporary Redirect</code>)</li>
+<li><code>304 Not Modified</code> (see <a href="#http-caching">HTTP caching</a> below)</li>
+<li><code>403 Forbidden</code></li>
+<li><code>404 Not Found</code></li>
+<li><code>500 Internal Server Error</code></li>
+<li>…</li>
+</ul>
+<p>See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">list of HTTP status codes</a> for more details.</p>
+<h2 id="headers">Headers<a class="headerlink" href="#headers" title="Permanent link">&para;</a></h2>
+<p>You can assign HTTP response headers like this:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user&#39;, function () {</span>
+<span class="x">    return new React\Http\Message\Response(</span>
+<span class="x">        200,</span>
+<span class="hll"><span class="x">        [&#39;Content-Type&#39; =&gt; &#39;text/plain; charset=utf-8&#39;],</span>
+</span><span class="x">        &quot;Hello wörld&quot;</span>
+<span class="x">    );</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl -I http://localhost:8080/user
+HTTP/1.1 <span class="m">200</span> OK
+<span class="hll">Content-Type: text/plain<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+</span>…
+</code></pre></div>
+<p>Each HTTP response message can contain an arbitrary number of response headers.
+You can pass these headers as an associative array to the response object.</p>
+<p>Additionally, the application will automatically include default headers required
+by the HTTP protocol.
+It's not recommended to mess with these default headers unless you're sure you
+know what you're doing.</p>
+<h2 id="http-caching">HTTP caching<a class="headerlink" href="#http-caching" title="Permanent link">&para;</a></h2>
+<p>HTTP caching can be used to significantly improve the performance of web
+applications by reusing previously fetched resources. HTTP caching is a whole
+topic on its own, so this section only aims to give a basic overview of how
+you can leverage HTTP caches with X. For a more in-depth overview, we highly
+recommend <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">MDN</a>.</p>
+<p>HTTP supports caching for certain requests by default. In any but the most basic
+use cases, it's often a good idea to explicitly specify HTTP caching headers
+as part of the HTTP response to have more control over the freshness lifetime
+and revalidation behavior.</p>
+<h3 id="cache-control">Cache-Control<a class="headerlink" href="#cache-control" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control"><code>Cache-Control</code></a>
+response header can be used to control caching of responses by browsers and
+shared caches such as proxies and CDNs. In its most basic form, you can use this
+response header to control the lifetime of a cached response like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$html</span> <span class="o">=</span> <span class="s">&lt;&lt;&lt;</span><span class="dl">HTML</span><span class="s"></span>
+<span class="s">&lt;h1&gt;Hello Alice&lt;/h1&gt;</span>
+<span class="dl">HTML</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;text/html; charset=utf-8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;max-age=3600&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="nv">$html</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl -I http://localhost:8080/user
+HTTP/1.1 <span class="m">200</span> OK
+Cache-Control: max-age<span class="o">=</span><span class="m">3600</span>
+…
+</code></pre></div>
+<h3 id="etag">ETag<a class="headerlink" href="#etag" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag"><code>ETag</code></a>
+response header can be used for conditional requests. This ensures the response
+body only needs to be transferred when it actually changes. For instance, you
+can build a hash (or some other arbitrary identifier) for your contents and
+check if it matches the incoming
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match"><code>If-None-Match</code></a>
+request header for subsequent requests. If both values match, you can send a
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304"><code>304 Not Modified</code></a>
+response and omit the response body like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// example body, would usually come from some kind of database</span>
+    <span class="nv">$html</span> <span class="o">=</span> <span class="s">&lt;&lt;&lt;</span><span class="dl">HTML</span><span class="s"></span>
+<span class="s">&lt;h1&gt;Hello Alice&lt;/h1&gt;</span>
+<span class="dl">HTML</span><span class="p">;</span>
+
+    <span class="nv">$etag</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">.</span> <span class="nb">sha1</span><span class="p">(</span><span class="nv">$html</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;If-None-Match&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="nv">$etag</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+            <span class="mi">304</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;max-age=0, must-revalidate&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;ETag&#39;</span> <span class="o">=&gt;</span> <span class="nv">$etag</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;text/html; charset=utf-8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;max-age=0, must-revalidate&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;ETag&#39;</span> <span class="o">=&gt;</span> <span class="nv">$etag</span>
+        <span class="p">],</span>
+        <span class="nv">$html</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+&lt;h1&gt;Hello Alice&lt;/h1&gt;
+
+$ curl -I http://localhost:8080/user -H <span class="s1">&#39;If-None-Match: &quot;87637b595ed5b32934c011dc6b33afb43f598865&quot;&#39;</span>
+HTTP/1.1 <span class="m">304</span> Not Modified
+Cache-Control: max-age<span class="o">=</span><span class="m">0</span>, must-revalidate
+ETag: <span class="s2">&quot;87637b595ed5b32934c011dc6b33afb43f598865&quot;</span>
+…
+</code></pre></div>
+<h3 id="last-modified">Last-Modified<a class="headerlink" href="#last-modified" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified"><code>Last-Modified</code></a>
+response header can be used to signal when a response was last modified. Among
+others, this can be used to ensure the response body only needs to be
+transferred when it changes. For instance, you can store a timestamp or datetime
+for your contents and check if it matches the incoming
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since"><code>If-Modified-Since</code></a>
+request header for subsequent requests. If both values match, you can send a
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304"><code>304 Not Modified</code></a>
+response and omit the response body like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// example date and body, would usually come from some kind of database</span>
+    <span class="nv">$date</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DateTimeImmutable</span><span class="p">(</span>
+        <span class="s1">&#39;2021-11-06 13:31:04&#39;</span><span class="p">,</span>
+        <span class="k">new</span> <span class="nx">DateTimeZone</span><span class="p">(</span><span class="s1">&#39;Europe/Berlin&#39;</span><span class="p">)</span>
+    <span class="p">);</span>
+    <span class="nv">$html</span> <span class="o">=</span> <span class="s">&lt;&lt;&lt;</span><span class="dl">HTML</span><span class="s"></span>
+<span class="s">&lt;h1&gt;Hello Alice&lt;/h1&gt;</span>
+<span class="dl">HTML</span><span class="p">;</span>
+
+    <span class="nv">$modified</span> <span class="o">=</span> <span class="nv">$date</span><span class="o">-&gt;</span><span class="na">setTimezone</span><span class="p">(</span><span class="k">new</span> <span class="nx">DateTimeZone</span><span class="p">(</span><span class="s1">&#39;UTC&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="nx">DATE_RFC7231</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;If-Modified-Since&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="nv">$modified</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+            <span class="mi">304</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;max-age=0, must-revalidate&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Last-Modified&#39;</span> <span class="o">=&gt;</span> <span class="nv">$modified</span>
+            <span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;text/html; charset=utf-8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Cache-Control&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;max-age=0, must-revalidate&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Last-Modified&#39;</span> <span class="o">=&gt;</span> <span class="nv">$modified</span>
+        <span class="p">],</span>
+        <span class="nv">$html</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+&lt;h1&gt;Hello Alice&lt;/h1&gt;
+
+$ curl -I http://localhost:8080/user -H <span class="s1">&#39;If-Modified-Since: Sat, 06 Nov 2021 12:31:04 GMT&#39;</span>
+HTTP/1.1 <span class="m">304</span> Not Modified
+Cache-Control: max-age<span class="o">=</span><span class="m">0</span>, must-revalidate
+Last-Modified: Sat, <span class="m">06</span> Nov <span class="m">2021</span> <span class="m">12</span>:31:04 GMT
+…
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>Working with dates</strong></p>
+<p>For use in HTTP, you may format any date in the GMT/UTC timezone using the
+<a href="https://www.php.net/manual/en/class.datetimeinterface.php#datetime.constants.rfc7231"><code>DATE_RFC7231</code></a>
+(PHP 7.1.5+) constant as given above. If you don't know the modification date
+for your response or don't want to expose this information, you may want to
+use <a href="#etag"><code>ETag</code></a> headers from the previous section instead.</p>
+</blockquote>
+<h2 id="output-buffering">Output buffering<a class="headerlink" href="#output-buffering" title="Permanent link">&para;</a></h2>
+<p>PHP provides a number of functions that write directly to the
+<a href="https://www.php.net/manual/en/book.outcontrol.php">output buffer</a> instead of
+returning values:</p>
+<ul>
+<li><a href="https://www.php.net/manual/en/function.echo.php"><code>echo</code></a>,
+  <a href="https://www.php.net/manual/en/function.print.php"><code>print</code></a>,
+  <a href="https://www.php.net/manual/en/function.printf.php"><code>printf()</code></a>,
+  <a href="https://www.php.net/manual/en/function.vprintf.php"><code>vprintf()</code></a>,
+  etc.</li>
+<li><a href="https://www.php.net/manual/en/function.var-dump.php"><code>var_dump()</code></a>,
+  <a href="https://www.php.net/manual/en/function.var-export.php"><code>var_export()</code></a>,
+  <a href="https://www.php.net/manual/en/function.print-r.php"><code>print_r()</code></a>,
+  etc.</li>
+<li><a href="https://www.php.net/manual/en/function.readfile.php"><code>readfile()</code></a>,
+  <a href="https://www.php.net/manual/en/function.fpassthru.php"><code>fpassthru()</code></a>,
+  <a href="https://www.php.net/manual/en/function.passthru.php"><code>passthru()</code></a>,
+  etc.</li>
+<li>…</li>
+</ul>
+<p>These functions can also be used in X, but do require some special care because
+we want to redirect this output to be part of an HTTP response instead. You can
+start a temporary output buffer using <a href="https://www.php.net/manual/en/function.ob-start.php"><code>ob_start()</code></a>
+to catch any output and return it as a response body like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/dump&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nb">ob_start</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="s2">&quot;Hello</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+    <span class="nv">$body</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">React\Http\Message\Response</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;text/plain; charset=utf-8&#39;</span><span class="p">],</span>
+        <span class="nv">$body</span>
+    <span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/dump
+Hello
+int<span class="o">(</span><span class="m">42</span><span class="o">)</span>
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>A word of caution</strong></p>
+<p>Special care should be taken if the code in question is deeply nested with
+multiple return conditions or may throw an <code>Exception</code>.</p>
+<p>As a rule of thumb, output buffering should only be used as a last resort and
+directly working with <code>string</code> values is usually preferable. For instance,
+<a href="https://www.php.net/manual/en/function.print_r.php"><code>print_r()</code></a>,
+<a href="https://www.php.net/manual/en/function.var-export.php"><code>var_export()</code></a> and
+others accept optional boolean flags to return the value instead of printing
+to the output buffer. In many other cases, PHP also provides alternative
+functions that directly return <code>string</code> values instead of writing to the output
+buffer. For instance, instead of using
+<a href="https://www.php.net/manual/en/function.printf.php"><code>printf()</code></a>, you may want
+to use <a href="https://www.php.net/manual/en/function.sprintf.php"><code>sprintf()</code></a>.</p>
+</blockquote>
+<h2 id="internal-server-error">Internal Server Error<a class="headerlink" href="#internal-server-error" title="Permanent link">&para;</a></h2>
+<p>Each controller function needs to return a response object in order to send
+an HTTP response message.
+If the controller functions throws an <code>Exception</code> (or <code>Throwable</code>) or any other type, the
+HTTP request will automatically be rejected with a <code>500 Internal Server Error</code>
+HTTP error response:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$app-&gt;get(&#39;/user&#39;, function () {</span>
+<span class="x">    throw new BadMethodCallException();</span>
+<span class="x">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl -I http://localhost:8080/user
+<span class="hll">HTTP/1.1 <span class="m">500</span> Internal Server Error
+</span>…
+</code></pre></div>
+<p>This error message contains only few details to the client to avoid leaking
+internal information.
+If you want to implement custom error handling, you're recommended to either
+catch any exceptions your own or use a <a href="../middleware/">middleware handler</a> to
+catch any exceptions in your application.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../request/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Request" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Request
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../async/fibers/" class="md-footer__link md-footer__link--next" aria-label="Next: Fibers" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Fibers
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
