@@ -142,17 +142,13 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = new FrameworkX\App();
 
 $app->get('/', function () {
-    return new React\Http\Message\Response(
-        200,
-        [],
+    return React\Http\Message\Response::plaintext(
         "Hello wörld!\n"
     );
 });
 
 $app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $request) {
-    return new React\Http\Message\Response(
-        200,
-        [],
+    return React\Http\Message\Response::plaintext(
         "Hello " . $request->getAttribute('name') . "!\n"
     );
 });
@@ -318,13 +314,8 @@ $app->run();
 
 <pre class="text-left mt-12 col-span-full shadow-2xl"><code class="php rounded-md">$app->get('/users', function () {
     $users = [['name' => 'Alice'], ['name' => 'Bob']];
-    $json = json_encode($users);
 
-    return new React\Http\Message\Response(
-        200,
-        [
-            'Content-Type' => 'application/json'
-        ],
+    return React\Http\Message\Response::json(
         $json
     );
 });
@@ -523,9 +514,7 @@ Transfer rate:          2358.15 [Kbytes/sec] received
     assert($result instanceof React\MySQL\QueryResult);
     $data = $result->resultRows[0]['title'];
 
-    return new React\Http\Message\Response(
-        200,
-        [],
+    return React\Http\Message\Response::plaintext(
         $data
     );
 });
@@ -621,7 +610,7 @@ Transfer rate:          2358.15 [Kbytes/sec] received
     });
 
     return new React\Http\Message\Response(
-        200,
+        React\Http\Message\Response::STATUS_OK,
         [
             'Content-Type' => 'text/event-stream'
         ],
@@ -826,17 +815,13 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = new FrameworkX\App();
 
 $app->get('/', function () {
-    return new React\Http\Message\Response(
-        200,
-        [],
+    return React\Http\Message\Response::plaintext(
         "Hello wörld!\n"
     );
 });
 
 $app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $request) {
-    return new React\Http\Message\Response(
-        200,
-        [],
+    return new React\Http\Message\Response::plaintext(
         "Hello " . $request->getAttribute('name') . "!\n"
     );
 });
