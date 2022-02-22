@@ -821,7 +821,7 @@ $app->get('/', function () {
 });
 
 $app->get('/users/{name}', function (Psr\Http\Message\ServerRequestInterface $request) {
-    return new React\Http\Message\Response::plaintext(
+    return React\Http\Message\Response::plaintext(
         "Hello " . $request->getAttribute('name') . "!\n"
     );
 });
