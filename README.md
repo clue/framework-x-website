@@ -7,6 +7,17 @@ Source code for the Framework X website.
 
 See https://github.com/clue/framework-x for more details about Framework X.
 
+## Contribute
+
+You want to contribute to our Framework X website? You've come to the right place!
+This repository contains everything you need to help out with the texts and
+code examples found on the [landing page of the website](https://framework-x.org/).
+Just locate the `public/index.html` and there you will find all contents.
+
+> ℹ️ This repository contains all files and build scripts required to generate the
+> entire website. If you want to contribute to the [Framework X documentation](https://framework-x.org/docs/),
+> take a look at [clue/framework-x](https://github.com/clue/framework-x).
+
 ## Build
 
 You can build the website like this:
