@@ -6,8 +6,8 @@ build:
 	cp overrides/* source/overrides/
 	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material:8.1.3 build
 	cp -r source/build/docs/ build/
-	cp .htaccess index.html build/
-	cp src/* build/src/
+	cp public/.htaccess public/index.html build/
+	cp public/src/* build/src/
 
 pull:
 	test -d source/ && git -C source/ pull || git clone git@github.com:clue/framework-x.git source/
