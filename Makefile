@@ -1,4 +1,4 @@
-build:
+build: public/src/tailwind.min.css
 	mkdir -p build/src/
 	test -d source/ || $(MAKE) pull
 	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
@@ -8,6 +8,13 @@ build:
 	cp -r source/build/docs/ build/
 	cp public/.htaccess public/index.html build/
 	cp public/src/* build/src/
+
+public/src/tailwind.min.css: public/index.html tailwindcss
+	./tailwindcss -o $@ --minify
+	touch $@
+
+tailwindcss:
+	test -x tailwindcss || curl -L https://github.com/tailwindlabs/tailwindcss/releases/download/v3.2.1/tailwindcss-linux-x64 > tailwindcss && chmod +x tailwindcss
 
 pull:
 	test -d source/ && git -C source/ pull || git clone git@github.com:clue/framework-x.git source/
@@ -24,6 +31,7 @@ served: build
 
 test:
 	bash tests/acceptance.sh
+	test -z "$$(git status --porcelain)" || (echo Directory is dirty && git status && exit 1)
 
 deploy:
 	git -C build/ init
@@ -34,6 +42,6 @@ deploy:
 	git -C build/ push origin live -f
 
 clean:
-	rm -rf source/ build/
+	rm -rf source/ build/ tailwindcss
 
 .PHONY: build pull serve served test deploy clean
