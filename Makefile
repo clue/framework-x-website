@@ -10,11 +10,11 @@ build: public/src/tailwind.min.css
 	cp public/src/* build/src/
 
 public/src/tailwind.min.css: public/index.html tailwindcss
-	./tailwindcss -o $@ --minify
+	./tailwindcss -o $@ --minify --content $<
 	touch $@
 
 tailwindcss:
-	test -x tailwindcss || curl -L https://github.com/tailwindlabs/tailwindcss/releases/download/v3.2.1/tailwindcss-linux-x64 > tailwindcss && chmod +x tailwindcss
+	test -x tailwindcss || curl -L https://github.com/tailwindlabs/tailwindcss/releases/download/v3.2.4/tailwindcss-linux-x64 > tailwindcss && chmod +x tailwindcss
 
 pull:
 	test -d source/ && git -C source/ pull || git clone git@github.com:clue/framework-x.git source/
