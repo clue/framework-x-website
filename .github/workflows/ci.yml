@@ -7,9 +7,9 @@ on:
 
 jobs:
   Deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: git clone https://github.com/clue/framework-x.git source/
       - run: make
       - run: make served
