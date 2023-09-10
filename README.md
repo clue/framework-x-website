@@ -73,6 +73,11 @@ the `live` branch like this:
 $ make deploy
 ```
 
+As a prerequisite, this should be deployed behind a CDN (Bunny CDN) that is
+responsible for HTTPS certificate handling and forcing HTTPS redirects. This CDN
+needs to be configured to pass the `X-Forwarded-Scheme` and `X-Forwarded-Host` HTTP
+request headers to avoid exposing the origin URL in any HTTP redirects.
+
 ## Auto-Deployment
 
 The website can be automatically deployed via the GitHub Pages feature.

@@ -8,12 +8,25 @@ match() {
     echo "$out" | grep "$@" >/dev/null && echo -n . || \
         (echo ""; echo "Error in test $n: Unable to \"grep $@\" this output:"; echo "$out"; exit 1) || exit 1
 }
+skipif() {
+    echo "$out" | grep "$@" >/dev/null && echo -n S && return 1 || return 0
+}
 
 out=$(curl -v $base/ 2>&1);         match "HTTP/.* 200" && match -iP "Content-Type: text/html[\r\n]"
 out=$(curl -v $base/invalid 2>&1);  match "HTTP/.* 404" && match -i "Content-Type: text/html"
 
 out=$(curl -v $base/docs 2>&1);                     match "HTTP/.* 301" && match -iP "Location: .*/docs/[\r\n]"
 out=$(curl -v $base/docs/ 2>&1);                    match "HTTP/.* 302" && match -iP "Location: .*/docs/getting-started/[\r\n]"
+
+out=$(curl -v $base/docs -H 'X-Forwarded-Host: example.com' -H 'X-Forwarded-Proto: https' 2>&1);
+match "HTTP/.* 301"
+skipif -iP "Location: $base/docs/[\r\n]" &&
+match -iP "Location: https://example\.com/docs/[\r\n]"
+
+out=$(curl -v $base/docs/ -H 'X-Forwarded-Host: example.com' -H 'X-Forwarded-Proto: http' 2>&1);
+match "HTTP/.* 302"
+skipif -iP "Location: $base/docs/[\r\n]" &&
+match -iP "Location: http://example\.com/docs/getting-started/[\r\n]"
 
 out=$(curl -v $base/docs/getting-started/ 2>&1);    match "HTTP/.* 302" && match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
 out=$(curl -v $base/docs/best-practices/ 2>&1);     match "HTTP/.* 302" && match -iP "Location: .*/docs/best-practices/controllers/[\r\n]"
