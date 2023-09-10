@@ -1,21 +1,32 @@
 RewriteEngine On
-RewriteRule ^docs/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}getting-started/ [R]
 
-RewriteRule ^docs/getting-started/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}quickstart/ [R]
-RewriteRule ^docs/best-practices/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}controllers/ [R]
-RewriteRule ^docs/api/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}app/ [R]
-RewriteRule ^docs/async/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}fibers/ [R]
-RewriteRule ^docs/integrations/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}database/ [R]
+# construct base URL for redirects from `X-Forwarded-Proto` and `X-Forwarded-Host`, otherwise empty to prefix current origin
+RewriteCond %{HTTP:X-Forwarded-Proto} ^https?$
+RewriteCond %{HTTP:X-Forwarded-Host} ^[a-zA-Z\d.-]+(:\d+)?$
+RewriteRule .* - [ENV=BASE_URL:%{HTTP:X-Forwarded-Proto}://%{HTTP:X-Forwarded-Host}]
+
+# redirect docs/ to right sub-directories
+RewriteRule ^docs/$ %{ENV:BASE_URL}%{REQUEST_URI}getting-started/ [R]
+RewriteRule ^docs/getting-started/$ %{ENV:BASE_URL}%{REQUEST_URI}quickstart/ [R]
+RewriteRule ^docs/best-practices/$ %{ENV:BASE_URL}%{REQUEST_URI}controllers/ [R]
+RewriteRule ^docs/api/$ %{ENV:BASE_URL}%{REQUEST_URI}app/ [R]
+RewriteRule ^docs/async/$ %{ENV:BASE_URL}%{REQUEST_URI}fibers/ [R]
+RewriteRule ^docs/integrations/$ %{ENV:BASE_URL}%{REQUEST_URI}database/ [R]
 
 # redirect old "more" section (2021-11-23)
-RewriteRule ^docs/more/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../getting-started/philosophy/ [R]
-RewriteRule ^docs/more/philosophy/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../../getting-started/philosophy/ [R]
-RewriteRule ^docs/more/architecture/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../../getting-started/philosophy/ [R]
-RewriteRule ^docs/more/community/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../../getting-started/community/ [R]
+RewriteRule ^docs/more/$ %{ENV:BASE_URL}%{REQUEST_URI}../getting-started/philosophy/ [R]
+RewriteRule ^docs/more/philosophy/$ %{ENV:BASE_URL}%{REQUEST_URI}../../getting-started/philosophy/ [R]
+RewriteRule ^docs/more/architecture/$ %{ENV:BASE_URL}%{REQUEST_URI}../../getting-started/philosophy/ [R]
+RewriteRule ^docs/more/community/$ %{ENV:BASE_URL}%{REQUEST_URI}../../getting-started/community/ [R]
 
 # redirect old "async" pages (2021-11-22)
-RewriteRule ^docs/async/child-processes/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../../integrations/child-processes/ [R]
-RewriteRule ^docs/async/streaming/$ %{REQUEST_SCHEME}://%{HTTP_HOST}%{REQUEST_URI}../../integrations/streaming/ [R]
+RewriteRule ^docs/async/child-processes/$ %{ENV:BASE_URL}%{REQUEST_URI}../../integrations/child-processes/ [R]
+RewriteRule ^docs/async/streaming/$ %{ENV:BASE_URL}%{REQUEST_URI}../../integrations/streaming/ [R]
 
+# redirect requests to directories to self with trailing slash
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule [^/]$ %{ENV:BASE_URL}%{REQUEST_URI}/ [R=301]
+
+# redirect requests to index pages to parent directory
 RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.*/?)index.html$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [R=301]
+RewriteRule ^(.*/?)index.html$ %{ENV:BASE_URL}/$1 [R=301]
