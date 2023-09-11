@@ -25,7 +25,7 @@ match -iP "Location: https://example\.com/docs/[\r\n]"
 
 out=$(curl -v $base/docs/ -H 'X-Forwarded-Host: example.com' -H 'X-Forwarded-Proto: http' 2>&1);
 match "HTTP/.* 302"
-skipif -iP "Location: $base/docs/[\r\n]" &&
+skipif -iP "Location: $base/docs/getting-started/[\r\n]" &&
 match -iP "Location: http://example\.com/docs/getting-started/[\r\n]"
 
 out=$(curl -v $base/docs/getting-started/ 2>&1);    match "HTTP/.* 302" && match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
