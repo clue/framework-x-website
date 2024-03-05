@@ -1,0 +1,1 @@
+hide nav + span text-base + #main margin: 8rem 0 20em 2em;
