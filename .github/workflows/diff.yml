@@ -1,0 +1,33 @@
+name: HTML diff
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  diff:
+    name: HTML diff
+    runs-on: ubuntu-22.04
+    steps:
+      - run: git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+
+      # check out base ref and build site into old/
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.event.repository.default_branch }}
+      - run: make && mv build/ old/
+      
+      # clean build files to remove any leftovers before building new version
+      - run: make clean
+
+      # check out head ref and build site into new/
+      - uses: actions/checkout@v4
+        with:
+          clean: false # Prevent removing files in old/
+      - run: make && mv build/ new/
+
+      # Diff between old/ and new/
+      - name: Diff between old/ and new/
+        run: |
+          git diff --no-index --stat --color=always old/ new/ && echo No changed detected || true
+          diff -r -u --color=always old/ new/ || true
