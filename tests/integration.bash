@@ -1,6 +1,7 @@
 #!/bin/bash
 
-base=${1:-http://localhost:8080}
+base=${1:-http://localhost:8080/}
+base=${base%/}
 
 n=0
 skipping=false
