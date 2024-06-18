@@ -21,9 +21,17 @@ skipif() {
 
 # check index endpoint
 
-curl -v $base/
+curl -v $base/ --compressed
 match "HTTP/.* 200"
 match -iP "Content-Type: text/html[\r\n]"
+match -iP "Content-Encoding: br[\r\n]"
+match -iP "Vary: Accept-Encoding[\r\n]"
+
+curl -v $base/ --compressed -H 'Accept-Encoding: gzip, deflate'
+match "HTTP/.* 200"
+match -iP "Content-Type: text/html[\r\n]"
+match -iP "Content-Encoding: gzip[\r\n]"
+match -iP "Vary: Accept-Encoding[\r\n]"
 
 curl -v $base/invalid
 match "HTTP/.* 404"
