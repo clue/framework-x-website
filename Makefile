@@ -21,11 +21,17 @@ pull:
 
 serve: build
 	docker run -it --rm -p 8080:80 -v "$$PWD"/build:/usr/local/apache2/htdocs/ httpd:2.4-alpine sh -c \
-	  "echo 'LoadModule rewrite_module modules/mod_rewrite.so' >> conf/httpd.conf;sed -i 's/AllowOverride None/AllowOverride All/' conf/httpd.conf;httpd -DFOREGROUND"
+	  "echo 'LoadModule rewrite_module modules/mod_rewrite.so' >> conf/httpd.conf && \
+	  echo 'LoadModule deflate_module modules/mod_deflate.so' >> conf/httpd.conf && \
+	  echo 'LoadModule brotli_module modules/mod_brotli.so' >> conf/httpd.conf && \
+	  echo 'AddOutputFilterByType BROTLI_COMPRESS;DEFLATE text/html' >> conf/httpd.conf;sed -i 's/AllowOverride None/AllowOverride All/' conf/httpd.conf;httpd -DFOREGROUND"
 
 served: build
 	docker run -d --rm -p 8080:80 -v "$$PWD"/build:/usr/local/apache2/htdocs/ httpd:2.4-alpine sh -c \
-	  "echo 'LoadModule rewrite_module modules/mod_rewrite.so' >> conf/httpd.conf;sed -i 's/AllowOverride None/AllowOverride All/' conf/httpd.conf;httpd -DFOREGROUND"
+	  "echo 'LoadModule rewrite_module modules/mod_rewrite.so' >> conf/httpd.conf && \
+	  echo 'LoadModule deflate_module modules/mod_deflate.so' >> conf/httpd.conf && \
+	  echo 'LoadModule brotli_module modules/mod_brotli.so' >> conf/httpd.conf && \
+	  echo 'AddOutputFilterByType BROTLI_COMPRESS;DEFLATE text/html' >> conf/httpd.conf;sed -i 's/AllowOverride None/AllowOverride All/' conf/httpd.conf;httpd -DFOREGROUND"
 	@sleep 2
 	@echo Container running. Use \"docker rm -f {containerId}\" to stop container.
 
