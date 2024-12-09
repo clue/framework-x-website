@@ -6,7 +6,7 @@ build: public/src/tailwind.min.css
 	cp overrides/* source/overrides/
 	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material:8.1.3 build
 	cp -r source/build/docs/ build/ && rm build/docs/sitemap.xml.gz
-	cp public/.htaccess public/index.html build/
+	cp public/.htaccess public/index.html public/robots.txt build/
 	cp public/src/* build/src/
 
 public/src/tailwind.min.css: public/index.html tailwindcss
