@@ -1,10 +1,12 @@
 build: public/src/tailwind.min.css
 	mkdir -p build/src/
 	test -d source/ || $(MAKE) pull
-	php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: overrides/$$2",file_get_contents("source/mkdocs.yml")));'
-	mkdir -p source/overrides
-	cp overrides/* source/overrides/
-	docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material:8.1.3 build
+	test -f source/mkdocs.yml || php -r 'file_put_contents("source/docs/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: build/overrides/$$2",file_get_contents("source/docs/mkdocs.yml")));'
+	test -f source/docs/compose.yaml || php -r 'file_put_contents("source/mkdocs.yml",preg_replace("/(theme:)(\n +)(?:custom_dir: .*?\n +)?/","$$1$$2custom_dir: build/overrides/$$2",file_get_contents("source/mkdocs.yml")));'
+	mkdir -p source/build/overrides
+	cp overrides/* source/build/overrides/
+	test -f source/mkdocs.yml || docker compose -f source/docs/compose.yaml run -u $(shell id -u) build
+	test -f source/docs/compose.yaml || docker run --rm -i -v ${PWD}/source:/docs -u $(shell id -u) squidfunk/mkdocs-material:8.1.3 build
 	cp -r source/build/docs/ build/ && rm build/docs/sitemap.xml.gz
 	cp public/.htaccess public/index.html public/robots.txt build/
 	cp public/src/* build/src/
