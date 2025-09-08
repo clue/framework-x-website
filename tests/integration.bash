@@ -18,16 +18,20 @@ match() {
 skipif() {
     echo "$out" | grep "$@" >/dev/null && echo -n S && skipping=true || return 0
 }
+skipifnot() {
+    echo "$out" | grep "$@" >/dev/null && return 0 || echo -n S && skipping=true
+}
 
 # check index endpoint
 
 curl -v $base/ --compressed
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html$"
-match -iE "Content-Encoding: br$"
 match -iE "Vary: Accept-Encoding$"
+skipifnot -iE "Accept-Encoding: (.*, ?)?br(,.*)?$"
+match -iE "Content-Encoding: br$"
 
-curl -v $base/ --compressed -H 'Accept-Encoding: gzip, deflate'
+curl -v $base/ --compressed -H 'Accept-Encoding: gzip'
 match "HTTP/.* 200"
 match -iE "Content-Type: text/html$"
 match -iE "Content-Encoding: gzip$"
