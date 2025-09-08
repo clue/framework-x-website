@@ -1,0 +1,1079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://framework-x.org/docs/api/request/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Request - Framework X documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      <script defer data-domain="framework-x.org" src="https://plausible.io/js/script.hash.outbound-links.js"></script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#request" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Framework X documentation" class="md-header__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Framework X documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Request
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Framework X documentation" class="md-nav__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Framework X documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        Quickstart in 5 minutes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/philosophy/" class="md-nav__link">
+        Our philosophy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Best Practices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Best Practices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Best Practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/controllers/" class="md-nav__link">
+        Controller classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../best-practices/deployment/" class="md-nav__link">
+        Production deployment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../app/" class="md-nav__link">
+        App
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Request
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Request
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form-data" class="md-nav__link">
+    Form data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uploads" class="md-nav__link">
+    Uploads
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    Headers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response/" class="md-nav__link">
+        Response
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Async
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Async" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Async
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/fibers/" class="md-nav__link">
+        Fibers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/coroutines/" class="md-nav__link">
+        Coroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/database/" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/filesystem/" class="md-nav__link">
+        ⚠ Filesystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/child-processes/" class="md-nav__link">
+        ⚠ Child processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/streaming/" class="md-nav__link">
+        ⚠ Streaming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/authentication/" class="md-nav__link">
+        ⚠ Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/sessions/" class="md-nav__link">
+        ⚠ Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/templates/" class="md-nav__link">
+        ⚠ Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/queueing/" class="md-nav__link">
+        ⚠ Queueing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    Attributes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    JSON
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#form-data" class="md-nav__link">
+    Form data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uploads" class="md-nav__link">
+    Uploads
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    Headers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/clue/framework-x/edit/main/docs/api/request.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h1>
+<p>Whenever the client sends an HTTP request to our application,
+we receive it as a request object and need to react to it.</p>
+<p>We love standards and want to make using X as simple as possible.
+That's why we build on top of the established <a href="https://www.php-fig.org/psr/psr-7/">PSR-7 standard</a>
+(HTTP message interfaces).
+This standard defines common interfaces for HTTP request and response objects.</p>
+<p>If you've ever used PSR-7 before, you should immediately feel at home when using X.
+If you're new to PSR-7, don't worry.
+Here's everything you need to know to get started.</p>
+<blockquote>
+<p>ℹ️ <strong>A note about other PSR-7 implementations</strong></p>
+<p>This documentation uses the
+<a href="https://www.php-fig.org/psr/psr-7/#321-psrhttpmessageserverrequestinterface"><code>Psr\Http\Message\ServerRequestInterface</code></a>
+for all examples.
+The actual class implementing this interface is an implementation detail that
+should not be relied upon.
+If you need to construct your own instance, we recommend using the
+<a href="https://reactphp.org/http/#serverrequest"><code>React\Http\Message\ServerRequest</code></a>
+class because this comes bundled as part of our dependencies,
+but you may use any other implementation as long as
+it implements the same interface.</p>
+</blockquote>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<p>You can access request attributes like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user/{id}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">$id</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user/Alice
+Hello Alice!
+</code></pre></div>
+<p>These custom attributes are most commonly used when using URI placeholders
+from <a href="../app/#routing">routing</a>.
+Each placeholder will automatically be assigned to a matching request attribute.
+See also <a href="../app/#routing">routing</a> for more details.</p>
+<p>Additionally, these custom attributes can also be useful when passing additional
+information from a middleware handler to other handlers further down the chain
+(think authentication information).
+See also <a href="../middleware/">middleware</a> for more details.</p>
+<h2 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
+<p>You can access JSON data from the HTTP request body like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">());</span>
+    <span class="nv">$name</span> <span class="o">=</span> <span class="nv">$data</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">??</span> <span class="s1">&#39;anonymous&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">$name</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user --data <span class="s1">&#39;{&quot;name&quot;:&quot;Alice&quot;}&#39;</span>
+Hello Alice!
+</code></pre></div>
+<p>Additionally, you may want to validate the <code>Content-Type: application/json</code> request header
+to be sure the client intended to send a JSON request body.</p>
+<p>This example returns a simple text response, you may also want to return a
+<a href="../response/#json">JSON response</a> for common API usage.</p>
+<h2 id="form-data">Form data<a class="headerlink" href="#form-data" title="Permanent link">&para;</a></h2>
+<p>You can access HTML form data from the HTTP request body like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getParsedBody</span><span class="p">();</span>
+    <span class="nv">$name</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;Anonymous&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">$name</span><span class="s2">!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user -d <span class="nv">name</span><span class="o">=</span>Alice
+Hello Alice!
+</code></pre></div>
+<p>This method returns a possibly nested array of form fields, very similar to
+PHP's <code>$_POST</code> superglobal.</p>
+<h2 id="uploads">Uploads<a class="headerlink" href="#uploads" title="Permanent link">&para;</a></h2>
+<p>You can access any file uploads from HTML forms like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$files</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getUploadedFiles</span><span class="p">();</span>
+    <span class="nv">$name</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$files</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$files</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">getClientFilename</span><span class="p">()</span> <span class="o">:</span> <span class="s1">&#39;x&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Uploaded </span><span class="si">$name\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user -F <span class="nv">image</span><span class="o">=</span>@~/Downloads/image.jpg
+Uploaded image.jpg
+</code></pre></div>
+<p>This method returns a possibly nested array of files uploaded, very similar
+to PHP's <code>$_FILES</code> superglobal.
+Each file in this array implements the <code>Psr\Http\Message\UploadedFileInterface</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$files</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getUploadedFiles</span><span class="p">();</span>
+<span class="nv">$image</span> <span class="o">=</span> <span class="nv">$files</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">];</span>
+<span class="nb">assert</span><span class="p">(</span><span class="nv">$image</span> <span class="nx">instanceof</span> <span class="nx">Psr\Http\Message\UploadedFileInterface</span><span class="p">);</span>
+
+<span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$image</span><span class="o">-&gt;</span><span class="na">getStream</span><span class="p">();</span>
+<span class="nb">assert</span><span class="p">(</span><span class="nv">$stream</span> <span class="nx">instanceof</span> <span class="nx">Psr\Http\Message\StreamInterface</span><span class="p">);</span>
+<span class="nv">$contents</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$stream</span><span class="p">;</span>
+
+<span class="nv">$size</span> <span class="o">=</span> <span class="nv">$image</span><span class="o">-&gt;</span><span class="na">getSize</span><span class="p">();</span>
+<span class="nb">assert</span><span class="p">(</span><span class="nb">is_int</span><span class="p">(</span><span class="nv">$size</span><span class="p">));</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$image</span><span class="o">-&gt;</span><span class="na">getClientFilename</span><span class="p">();</span>
+<span class="nb">assert</span><span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$name</span> <span class="o">===</span> <span class="k">null</span><span class="p">);</span>
+
+<span class="nv">$type</span> <span class="o">=</span> <span class="nv">$image</span><span class="o">-&gt;</span><span class="na">getClientMediaType</span><span class="p">();</span>
+<span class="nb">assert</span><span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$type</span><span class="p">)</span> <span class="o">||</span> <span class="nv">$name</span> <span class="o">===</span> <span class="k">null</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>Info</strong></p>
+<p>Note that HTTP requests are currently limited to 64 KiB. Any uploads above
+this size will currently show up as an empty request body with no file uploads
+whatsoever.</p>
+</blockquote>
+<h2 id="headers">Headers<a class="headerlink" href="#headers" title="Permanent link">&para;</a></h2>
+<p>You can access all HTTP request headers like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$agent</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getHeaderLine</span><span class="p">(</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">$agent\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user -H <span class="s1">&#39;User-Agent: FrameworkX/0&#39;</span>
+Hello FrameworkX/0
+</code></pre></div>
+<p>This example returns a simple text response with no additional response headers,
+you may also want to return <a href="../response/#headers">response headers</a> for common API usage.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<p>You can access server-side parameters like this:</p>
+<div class="highlight"><span class="filename">public/index.php</span><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">// …</span>
+
+<span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Psr\Http\Message\ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getServerParams</span><span class="p">();</span>
+    <span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;unknown&#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">React\Http\Message\Response</span><span class="o">::</span><span class="na">plaintext</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">$ip\n</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An HTTP request can be sent like this:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/user
+Hello <span class="m">127</span>.0.0.1
+</code></pre></div>
+<p>This method returns an array of server-side parameters, very similar
+to PHP's <code>$_SERVER</code> superglobal.
+Note that available server parameters depend on the server software and version
+in use.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../middleware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Middleware" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Middleware
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../response/" class="md-footer__link md-footer__link--next" aria-label="Next: Response" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Response
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1605 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://framework-x.org/docs/best-practices/deployment/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Production deployment - Framework X documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      <script defer data-domain="framework-x.org" src="https://plausible.io/js/script.hash.outbound-links.js"></script>
+
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#production-deployment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Framework X documentation" class="md-header__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Framework X documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Production deployment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Framework X documentation" class="md-nav__button md-logo" aria-label="Framework X documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Framework X documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/clue/framework-x/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clue/framework-x
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        Quickstart in 5 minutes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/philosophy/" class="md-nav__link">
+        Our philosophy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/community/" class="md-nav__link">
+        Community
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Best Practices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Best Practices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Best Practices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controllers/" class="md-nav__link">
+        Controller classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Production deployment
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Production deployment
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traditional-stacks" class="md-nav__link">
+    Traditional stacks
+  </a>
+  
+    <nav class="md-nav" aria-label="Traditional stacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php-development-web-server" class="md-nav__link">
+    PHP development web server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    nginx
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy" class="md-nav__link">
+    Caddy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache" class="md-nav__link">
+    Apache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-web-server" class="md-nav__link">
+    Built-in web server
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in web server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listen-address" class="md-nav__link">
+    Listen address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-limit" class="md-nav__link">
+    Memory limit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fd-limits" class="md-nav__link">
+    FD limits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    Systemd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-reverse-proxy" class="md-nav__link">
+    nginx reverse proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy-reverse-proxy" class="md-nav__link">
+    Caddy reverse proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-containers" class="md-nav__link">
+    Docker containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/app/" class="md-nav__link">
+        App
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/middleware/" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/request/" class="md-nav__link">
+        Request
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/response/" class="md-nav__link">
+        Response
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Async
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Async" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Async
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/fibers/" class="md-nav__link">
+        Fibers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/coroutines/" class="md-nav__link">
+        Coroutines
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../async/promises/" class="md-nav__link">
+        Promises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/database/" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/filesystem/" class="md-nav__link">
+        ⚠ Filesystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/child-processes/" class="md-nav__link">
+        ⚠ Child processes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/streaming/" class="md-nav__link">
+        ⚠ Streaming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/authentication/" class="md-nav__link">
+        ⚠ Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/sessions/" class="md-nav__link">
+        ⚠ Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/templates/" class="md-nav__link">
+        ⚠ Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/queueing/" class="md-nav__link">
+        ⚠ Queueing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traditional-stacks" class="md-nav__link">
+    Traditional stacks
+  </a>
+  
+    <nav class="md-nav" aria-label="Traditional stacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php-development-web-server" class="md-nav__link">
+    PHP development web server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    nginx
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy" class="md-nav__link">
+    Caddy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache" class="md-nav__link">
+    Apache
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-web-server" class="md-nav__link">
+    Built-in web server
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in web server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listen-address" class="md-nav__link">
+    Listen address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-limit" class="md-nav__link">
+    Memory limit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fd-limits" class="md-nav__link">
+    FD limits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd" class="md-nav__link">
+    Systemd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx-reverse-proxy" class="md-nav__link">
+    nginx reverse proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caddy-reverse-proxy" class="md-nav__link">
+    Caddy reverse proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-containers" class="md-nav__link">
+    Docker containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/clue/framework-x/edit/main/docs/best-practices/deployment.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="production-deployment">Production deployment<a class="headerlink" href="#production-deployment" title="Permanent link">&para;</a></h1>
+<p>One of the nice properties of X is that it <strong>runs anywhere</strong>, i.e. it works both
+behind traditional web server setups as well as in a stand-alone environment.
+This makes it easy to get started with existing web application stacks, yet it
+provides even more awesome features with its built-in web server.</p>
+<h2 id="traditional-stacks">Traditional stacks<a class="headerlink" href="#traditional-stacks" title="Permanent link">&para;</a></h2>
+<p>No matter what existing PHP stack you're using, X runs anywhere.
+This means that if you've already used PHP before, X will <em>just work</em>.</p>
+<ul>
+<li>nginx or Caddy with PHP-FPM</li>
+<li>Apache with PHP-FPM, mod_fcgid, mod_cgi or mod_php</li>
+<li>Any other web server using FastCGI to talk to PHP-FPM</li>
+<li>Linux, Mac and Windows operating systems (<abbrev title="Apache, MySQL or MariaDB, PHP, on Linux, Mac or Windows operating systems">LAMP, MAMP, WAMP</abbrev>)</li>
+</ul>
+<p><em>We've got you covered!</em></p>
+<h3 id="php-development-web-server">PHP development web server<a class="headerlink" href="#php-development-web-server" title="Permanent link">&para;</a></h3>
+<p>For example, if you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+you can run this using PHP's built-in development web server for testing
+purposes like this:</p>
+<div class="highlight"><pre><span></span><code>$ php -S <span class="m">0</span>.0.0.0:8080 public/index.php
+</code></pre></div>
+<p>In order to check your web application responds as expected, you can use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/
+Hello wörld!
+</code></pre></div>
+<h3 id="nginx">nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
+<p>nginx is a high performance web server, load balancer and reverse proxy. In
+particular, its high performance and versatility makes it one of the most
+popular web servers. It is used everywhere from the smallest projects to the
+biggest enterprises.</p>
+<p>X supports nginx out of the box. If you've used nginx before to run any PHP
+application, using nginx with X is as simple as dropping the project files in
+the right directory. Accordingly, this guide assumes you want to process a
+number of <a href="../../api/app/#routing">dynamic routes</a> through X and optionally
+include some public assets (such as style sheets and images).</p>
+<blockquote>
+<p>ℹ️ <strong>PHP-FPM or reverse proxy?</strong></p>
+<p>This section assumes you want to use nginx with PHP-FPM which is a very common,
+traditional web stack. If you want to get the most out of X, you may also
+want to look into using the built-in web server with an
+<a href="#nginx-reverse-proxy">nginx reverse proxy</a>.</p>
+</blockquote>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to point the nginx' <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#root"><code>root</code></a>
+("docroot") to the <code>public/</code> directory of your project. On top of this, you'll need
+to instruct nginx to process any dynamic requests through X. This can be
+achieved by using an nginx configuration with the following contents:</p>
+<div class="highlight"><pre><span></span><code>server {
+    root /home/alice/projects/acme/public;
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    # Optional: handle Apache config with Framework X if it exists in `public/`
+    error_page 403 = /index.php;
+    location ~ \.htaccess$ {
+        deny all;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass localhost:9000;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>New to nginx?</strong></p>
+<p>A complete nginx configuration is out of scope for this guide, so we assume
+you already have nginx and PHP with PHP-FPM up and running. In this example,
+we're assuming PHP-FPM is already up and running and listens on <code>localhost:9000</code>,
+consult your search engine of choice for basic install instructions. Once this
+is set up, the above guide should be everything you need to then use X.</p>
+<p>We recommend using the above nginx configuration as a starting point if you're
+unsure. In this basic form, it instructs nginx to rewrite any requests for
+files that do not exist to your <code>public/index.php</code> which then processes any
+requests by checking your <a href="../../api/app/#routing">registered routes</a>.</p>
+</blockquote>
+<p>Once done, you can check your web application responds as expected. Use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost/
+Hello wörld!
+</code></pre></div>
+<h3 id="caddy">Caddy<a class="headerlink" href="#caddy" title="Permanent link">&para;</a></h3>
+<p>Caddy is an extensible, cross-platform, open-source web server written in Go.
+Many projects use Caddy because of its ease of use in configuration, and its
+headlining feature, Automatic HTTPS, which provisions TLS certificates for your
+sites and keeps them renewed.</p>
+<p>X supports Caddy out of the box. If you've used Caddy before to run any PHP
+application, using Caddy with X is as simple as dropping the project files in
+the right directory. Accordingly, this guide assumes you want to process a
+number of <a href="../../api/app/#routing">dynamic routes</a> through X and optionally
+include some public assets (such as style sheets and images).</p>
+<blockquote>
+<p>ℹ️ <strong>PHP-FPM or reverse proxy?</strong></p>
+<p>This section assumes you want to use Caddy with PHP-FPM which is a very common,
+traditional web stack. If you want to get the most out of X, you may also
+want to look into using the built-in web server with
+<a href="#caddy-reverse-proxy">Caddy's reverse proxy</a>.</p>
+</blockquote>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to point Caddy's <a href="https://caddyserver.com/docs/caddyfile/directives/root"><code>root</code> directive</a>
+to the <code>public/</code> directory of your project. On top of this, you'll need
+to instruct Caddy to process any dynamic requests through X. This can be
+achieved by using a <code>Caddyfile</code> configuration with the following contents:</p>
+<div class="highlight"><pre><span></span><code>example.com {
+    root * /var/www/html/public
+    encode gzip
+    php_fastcgi localhost:9000
+    file_server
+}
+</code></pre></div>
+<p>Caddy's <a href="https://caddyserver.com/docs/caddyfile/directives/php_fastcgi"><code>php_fastcgi</code> directive</a>
+is ready out-of-the-box to serve modern PHP sites. This will also automatically
+provision a TLS certificate for your domain (e.g. <code>example.com</code> – replace it
+with your own domain) on startup, assuming your DNS is properly configured to
+point to your server, and your server is publicly accessible on ports 80 and 443.</p>
+<blockquote>
+<p>ℹ️ <strong>New to Caddy?</strong></p>
+<p>A complete <code>Caddyfile</code> configuration is out of scope for this guide, so we assume
+you already have Caddy and PHP with PHP-FPM up and running. In this example,
+we're assuming PHP-FPM is already up and running and listens on <code>localhost:9000</code>,
+consult your search engine of choice for basic install instructions. Once this
+is set up, the above guide should be everything you need to then use X. We
+recommend using the above Caddy configuration as a starting point if you're
+unsure.</p>
+</blockquote>
+<p>Once done, you can check your web application responds as expected. Use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl https://example.com/
+Hello wörld!
+</code></pre></div>
+<h3 id="apache">Apache<a class="headerlink" href="#apache" title="Permanent link">&para;</a></h3>
+<p>The Apache HTTP server (httpd) is one of the most popular web servers. In
+particular, it is a very common choice for hosts that run multiple web
+applications (such as shared hosting providers) due to its ease of use and
+support for dynamic configuration through <code>.htaccess</code> files.</p>
+<p>X supports Apache out of the box. If you've used Apache before to run any PHP
+application, using Apache with X is as simple as dropping the project files in
+the right directory. Accordingly, this guide assumes you want to process a
+number of <a href="../../api/app/#routing">dynamic routes</a> through X and optionally
+include some public assets (such as style sheets and images).</p>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to point the Apache's <a href="http://httpd.apache.org/docs/2.4/de/mod/core.html#documentroot"><code>DocumentRoot</code></a>
+("docroot") to the <code>public/</code> directory of your project. On top of this, you'll need
+to instruct Apache to rewrite dynamic requests so they will be processed by X.
+Inside your <code>public/</code> directory, create an <code>.htaccess</code> file (note the leading <code>.</code> which
+makes this a hidden file) with the following contents:</p>
+<div class="highlight"><span class="filename">public/.htaccess</span><pre><span></span><code>RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php
+
+# Optional: handle `.htaccess` with Framework X instead of `403 Forbidden`
+ErrorDocument 403 /%{REQUEST_URI}/../index.php
+
+# This adds support for authorization header
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>New to mod_rewrite?</strong></p>
+<p>We recommend using the above <code>.htaccess</code> file as a starting point if you're
+unsure. In this basic form, it instructs Apache to rewrite any requests for
+files that do not exist to your <code>public/index.php</code> which then processes any
+requests by checking your <a href="../../api/app/#routing">registered routes</a>. This
+requires the <a href="https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html"><code>mod_rewrite</code></a>
+Apache module, which should be enabled by default on most platforms. On Ubuntu-
+or Debian-based systems, you may enable it like this:</p>
+<div class="highlight"><pre><span></span><code>$ sudo a2enmod rewrite
+</code></pre></div>
+</blockquote>
+<p>Once done, your project directory should now look like this:</p>
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   ├── .htaccess
+│   └── index.php
+├── vendor/
+├── composer.json
+└── composer.lock
+</code></pre></div>
+<p>If you're not already running an Apache server, you can run your X project with
+Apache in a temporary Docker container like this:</p>
+<div class="highlight"><pre><span></span><code>$ docker run -it --rm -p <span class="m">80</span>:80 -v <span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/srv php:8.4-apache sh -c <span class="s2">&quot;rmdir /var/www/html;ln -s /srv/public /var/www/html;ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled; apache2-foreground&quot;</span>
+</code></pre></div>
+<p>In order to check your web application responds as expected, you can use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost/
+Hello wörld!
+</code></pre></div>
+<h2 id="built-in-web-server">Built-in web server<a class="headerlink" href="#built-in-web-server" title="Permanent link">&para;</a></h2>
+<p>But there's more!
+Framework X ships its own efficient web server implementation written in pure PHP.
+This uses an event-driven architecture to allow you to get the most out of Framework X.
+With the built-in web server, we provide a non-blocking implementation that can handle thousands of incoming connections and provide a much better user experience in high-load scenarios.</p>
+<p>With no changes required, you can run the built-in web server with the exact same code base on the command line:</p>
+<div class="highlight"><pre><span></span><code>$ php public/index.php
+</code></pre></div>
+<p>Let's take a look and see this works just like before:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/
+Hello wörld!
+</code></pre></div>
+<p>You may be wondering how fast a pure PHP web server implementation could possibly be.
+In fact, in benchmarks this setup outperforms any traditional PHP stack by orders of magnitude.
+The answer: <a href="https://framework-x.org/#lightning-fast">Lightning fast!</a></p>
+<h3 id="listen-address">Listen address<a class="headerlink" href="#listen-address" title="Permanent link">&para;</a></h3>
+<p>By default, X will listen on <code>http://127.0.0.1:8080</code>, i.e. you can connect to it on
+the local port <code>8080</code>, but you can not connect to it from outside the system it's
+running on. This is a common approach when running this behind a reverse proxy
+such as nginx, HAproxy, etc. for TLS termination as discussed in the next chapter.</p>
+<p>If you want to change the listen address, you can pass an IP and port
+combination through the <code>X_LISTEN</code> environment variable like this:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">X_LISTEN</span><span class="o">=</span><span class="m">127</span>.0.0.1:8081 php public/index.php
+</code></pre></div>
+<p>While not usually recommended (see <a href="#nginx-reverse-proxy">nginx reverse proxy</a>),
+you can also expose this to the public by using the special <code>0.0.0.0</code> IPv4 address
+or <code>[::]</code> IPv6 address like this:</p>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">X_LISTEN</span><span class="o">=</span><span class="m">0</span>.0.0.0:8080 php public/index.php
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>Saving environment variables</strong></p>
+<p>For temporary testing purposes, you may explicitly <code>export</code> your environment
+variables on the command like above. As a more permanent solution, you may
+want to save your environment variables in your <a href="#systemd">systemd configuration</a>,
+<a href="#docker-containers">Docker settings</a>, load your variables from a dotenv file
+(<code>.env</code>) using a library such as <a href="https://github.com/vlucas/phpdotenv">vlucas/phpdotenv</a>,
+or use an explicit <a href="../controllers/#container-configuration">Container configuration</a>.</p>
+</blockquote>
+<h3 id="memory-limit">Memory limit<a class="headerlink" href="#memory-limit" title="Permanent link">&para;</a></h3>
+<p>X is carefully designed to minimize memory usage. Depending on your application
+workload, it may need anywhere from a few kilobytes to a couple of megabytes per
+request. Once the request is completely handled, used memory will be freed again.
+Under load spikes, memory may temporarily increase to handle concurrent requests.
+PHP can handle this load just fine, but many default setups use a rather low
+memory limit that is more suited for single requests only.</p>
+<div class="highlight"><pre><span></span><code>Fatal error: Allowed memory size of 134217728 bytes exhausted […]
+</code></pre></div>
+<p>When using the built-in web server, we highly recommend increasing the memory
+limit to match your concurrency workload. On Ubuntu- or Debian-based systems,
+you may change your PHP configuration like this:</p>
+<div class="highlight"><pre><span></span><code>$ sudoedit /etc/php/8.4/cli/php.ini
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/php/8.4/cli/php.ini</span><pre><span></span><code><span class="gd">- memory_limit = 128M</span>
+<span class="gi">+ memory_limit = -1</span>
+</code></pre></div>
+<h3 id="fd-limits">FD limits<a class="headerlink" href="#fd-limits" title="Permanent link">&para;</a></h3>
+<p>By default, many systems limit the number of file descriptors (FDs) that a
+single process can have open at once to 1024, and following the Unix philosophy
+that "everything is a file", this also includes network connections. This limit
+is usually more than enough for most simple use cases, but if you're running a
+high-concurrency server, you may want to handle more connections simultaneously.
+No problem – Framework X has you covered.</p>
+<p>The <code>ulimit</code> command (or its equivalent in your system's service management tool,
+like <a href="#systemd">systemd</a> or <a href="#docker-containers">Docker</a> flags) allows you to
+set soft and hard limits for the maximum number of open files. Increasing these
+limits will enable your application to support more concurrent connections:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">ulimit</span> -n <span class="m">100000</span>
+</code></pre></div>
+<p>Additionally, the default <a href="https://github.com/reactphp/event-loop#loop-implementations">event loop implementation</a>
+in Framework X uses the <code>select()</code> system call, which is also limited to 1024
+file descriptors on most systems (<code>PHP_FD_SETSIZE</code> constant). If you want to use a
+higher limit, you need to install one of the supported event loop extensions
+from PECL:</p>
+<ul>
+<li><a href="https://pecl.php.net/package/ev"><code>ext-ev</code></a> (recommended)</li>
+<li><a href="https://pecl.php.net/package/event"><code>ext-event</code></a></li>
+<li><a href="https://pecl.php.net/package/uv"><code>ext-uv</code></a> (beta)</li>
+</ul>
+<p>Besides your <code>ulimit</code> setting, no further configuration is required – these
+extensions will automatically be loaded when available. So, whether your
+application needs to handle hundreds or even millions of connections
+(<a href="https://en.wikipedia.org/wiki/C10k_problem">C10k problem</a>), Framework X has
+you covered.</p>
+<blockquote>
+<p>✅ <strong>Avoiding misconfigurations</strong></p>
+<p>Make sure to adjust the <code>ulimit</code> setting according to your specific needs. If
+you create an outgoing connection for each request (think building a proxy
+server or using isolated database connections), you may temporarily require
+two FDs per request. On the other hand, simple applications may get pretty far
+with just the defaults.</p>
+<p>As soon as a file or connection is closed, its FD will become available again
+for future use. Accordingly, many lower-concurrency applications may never hit
+the limit. If you do hit the limit, any operation that opens new files or
+connections may fail with an error message like this:</p>
+<div class="highlight"><pre><span></span><code>Connection to tcp://127.0.0.1:3309 failed: Too many open files (EMFILE)
+</code></pre></div>
+<p>If you increase the <code>ulimit</code> setting, but fail to install one of the supported
+event loop extensions, your server log may be flooded with the following
+warning because the event loop would fail repeatedly:</p>
+<div class="highlight"><pre><span></span><code>stream_select(): You MUST recompile PHP with a larger value of FD_SETSIZE.
+It is set to 1024, but you have descriptors numbered at least as high as 2048.
+--enable-fd-setsize=2048 is recommended, but you may want to set it
+to equal the maximum number of open files supported by your system,
+in order to avoid seeing this error again at a later date.
+</code></pre></div>
+<p>If your system is seeing 100% CPU usage for no apparent reasons, this may be
+the reason why. Follow the instructions above or follow the best practices for
+<a href="#docker-containers">Docker</a> below.</p>
+</blockquote>
+<h3 id="systemd">Systemd<a class="headerlink" href="#systemd" title="Permanent link">&para;</a></h3>
+<p>So far, we're manually executing the application server on the command line and
+everything works fine for testing purposes. Once we're going to push this to
+production, we should use service monitoring to make sure the server will
+automatically restart after system reboot or failure.</p>
+<p>If we're using an Ubuntu- or Debian-based system, we can use the below
+instructions to configure <code>systemd</code> to manage our server process with just a
+few lines of configuration, which makes it super easy to run X in production.</p>
+<blockquote>
+<p>ℹ️ <strong>Why systemd?</strong></p>
+<p>There's a large variety of different tools and options to use for service
+monitoring, depending on your particular needs. Among these is <code>systemd</code>, which
+is very wide-spread on Linux-based systems and in fact comes preinstalled with
+many of the large distributions. But we love choice. If you prefer different
+tools, you can adjust the following instructions to suit your needs.</p>
+</blockquote>
+<p>First, start by creating a systemd unit file for our application. We can simply
+drop the following configuration template into the systemd configuration
+directory like this:</p>
+<div class="highlight"><pre><span></span><code>$ sudoedit /etc/systemd/system/acme.service
+</code></pre></div>
+<div class="highlight"><span class="filename">/etc/systemd/system/acme.service</span><pre><span></span><code>[Unit]
+Description=ACME server
+
+[Service]
+ExecStart=/usr/bin/php /home/alice/projects/acme/public/index.php
+User=alice
+LimitNOFILE=100000
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>
+<p>In this example, we're assuming the system user <code>alice</code> has followed the
+<a href="../../getting-started/quickstart/">quickstart example</a> and has successfully
+installed everything in the <code>/home/alice/projects/acme</code> directory. Make sure to
+adjust the system user and paths to your application directory and PHP binary
+to suit your needs.</p>
+<p>Once the new systemd unit file has been put in place, we need to activate the
+service unit once like this:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl <span class="nb">enable</span> acme.service
+</code></pre></div>
+<p>Finally, we need to instruct systemd to start our new unit:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl start acme.service
+</code></pre></div>
+<p>And that's it already! Systemd now monitors our application server and will
+automatically start, stop and restart the server application when needed. You
+can check the status at any time like this:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl status acme.service
+● acme.service - ACME server
+     Loaded: loaded <span class="o">(</span>/etc/systemd/system/acme.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+     Active: active <span class="o">(</span>running<span class="o">)</span>
+<span class="o">[</span>…<span class="o">]</span>
+</code></pre></div>
+<p>On top of this, you need to restart your service manually when the source code
+has been modified. In this case, simply execute the following command:</p>
+<div class="highlight"><pre><span></span><code>$ sudo systemctl restart acme.service
+</code></pre></div>
+<p>This should be enough to get you started with systemd. If you want to learn more
+about systemd, check out the
+<a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">official documentation</a>.</p>
+<h3 id="nginx-reverse-proxy">nginx reverse proxy<a class="headerlink" href="#nginx-reverse-proxy" title="Permanent link">&para;</a></h3>
+<p>If you're using the built-in web server, X will listen on <code>http://127.0.0.1:8080</code>
+<a href="#listen-address">by default</a>. Instead of using the <code>X_LISTEN</code> environment to
+change to a publicly accessible listen address, it's usually recommended to use
+a reverse proxy instead for production deployments.</p>
+<p>By using nginx as a reverse proxy, we can leverage a high performance web server
+to handle static assets (such as style sheets and images) and proxy any
+requests to <a href="../../api/app/#routing">dynamic routes</a> through X. On top of this,
+we can configure nginx to log requests, handle rate limits, and to provide HTTPS
+support (TLS/SSL termination).</p>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to point the nginx' <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#root"><code>root</code></a>
+("docroot") to the <code>public/</code> directory of your project. On top of this, you'll need
+to instruct nginx to process any dynamic requests through X. This can be
+achieved by using an nginx configuration with the following contents:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">nginx.conf (reverse proxy with static files)</label><label for="__tabbed_1_2">nginx.conf (minimal reverse proxy)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>server {
+    # Serve static files from `public/`, proxy dynamic requests to Framework X
+    location / {
+        location ~* \.php$ {
+            try_files /dev/null @x;
+        }
+        root /home/alice/projects/acme/public;
+        try_files $uri @x;
+    }
+
+    location @x {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header Connection &quot;&quot;;
+    }
+
+    # Optional: handle Apache config with Framework X if it exists in `public/`
+    location ~ \.htaccess$ {
+        try_files /dev/null @x;
+    }
+}
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>server {
+    # Proxy all requests to Framework X
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header Connection &quot;&quot;;
+    }
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<p>ℹ️ <strong>New to nginx?</strong></p>
+<p>A complete nginx configuration is out of scope for this guide, so we assume
+you already have nginx up and running. Unlike <a href="#nginx">using nginx with PHP-FPM</a>,
+this example does not require a PHP-FPM setup.</p>
+<p>We recommend using the above nginx configuration as a starting point if you're
+unsure. In this basic form, it instructs nginx to rewrite any requests for
+files that do not exist to your <code>public/index.php</code> which then processes any
+requests by checking your <a href="../../api/app/#routing">registered routes</a>.</p>
+</blockquote>
+<p>Once done, you can check your web application responds as expected. Use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost/
+Hello wörld!
+</code></pre></div>
+<h3 id="caddy-reverse-proxy">Caddy reverse proxy<a class="headerlink" href="#caddy-reverse-proxy" title="Permanent link">&para;</a></h3>
+<p>If you're using the built-in web server, X will listen on <code>http://127.0.0.1:8080</code>
+<a href="#listen-address">by default</a>. Instead of using the <code>X_LISTEN</code> environment to
+change to a publicly accessible listen address, it's usually recommended to use
+a reverse proxy instead for production deployments.</p>
+<p>By using Caddy as a reverse proxy, we can leverage a high performance web server
+to handle static assets (such as style sheets and images) and proxy any
+requests to <a href="../../api/app/#routing">dynamic routes</a> through X. On top of this,
+we can configure Caddy to log requests, handle rate limits, and to provide HTTPS
+support (TLS termination).</p>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to point the Caddy's <a href="https://caddyserver.com/docs/caddyfile/directives/root"><code>root</code> directive</a>
+to the <code>public/</code> directory of your project. On top of this, you'll need
+to instruct Caddy to process any dynamic requests through X. This can be
+achieved by using a <code>Caddyfile</code> configuration with the following contents:</p>
+<div class="highlight"><pre><span></span><code>example.com {
+    root * /var/www/html/public;
+
+    @static {
+        file {path} {path}/
+        not path *.php
+    }
+    handle @static {
+        rewrite * {http.matchers.file.relative}
+        file_server
+    }
+
+    handle {
+        reverse_proxy localhost:8080
+    }
+}
+</code></pre></div>
+<blockquote>
+<p>ℹ️ <strong>New to Caddy?</strong></p>
+<p>A complete Caddy configuration is out of scope for this guide, so we assume
+you already have Caddy up and running. Unlike <a href="#caddy">using Caddy with PHP-FPM</a>,
+this example does not require a PHP-FPM setup.</p>
+<p>We recommend using the above <code>Caddyfile</code> configuration as a starting point if you're
+unsure. In this basic form, it instructs Caddy to server any requests for
+files <em>do</em> exist, and proxy everything else to your X server, which processes any
+requests by checking your <a href="../../api/app/#routing">registered routes</a>.</p>
+</blockquote>
+<p>Once done, you can check your web application responds as expected. Use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl https://example.com/
+Hello wörld!
+</code></pre></div>
+<h3 id="docker-containers">Docker containers<a class="headerlink" href="#docker-containers" title="Permanent link">&para;</a></h3>
+<p>X supports running inside Docker containers out of the box. Thanks to the
+powerful combination of the built-in web server and Docker containers, your
+web application can be built and shipped anywhere with ease. No matter if you
+want to have a reproducible development environment or want to scale your
+production cloud, we've got you covered.</p>
+<p>Assuming you've followed the <a href="../../getting-started/quickstart/">quickstart guide</a>,
+all you need to do is to build and run a Docker image of your project. This can
+be achieved by using a <code>Dockerfile</code> with the following contents:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Dockerfile basics for development</label><label for="__tabbed_2_2">Dockerfile for minimal production image</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><span class="c"># syntax=docker/dockerfile:1</span>
+<span class="k">FROM</span> <span class="s">php:8.4-cli</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app/</span>
+<span class="k">COPY</span> public/ public/
+<span class="k">COPY</span> vendor/ vendor/
+
+<span class="k">ENV</span> <span class="nv">X_LISTEN</span><span class="o">=</span><span class="m">0</span>.0.0.0:8080
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;php&quot;</span><span class="p">,</span> <span class="s2">&quot;public/index.php&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><span class="c"># syntax=docker/dockerfile:1</span>
+<span class="k">FROM</span> <span class="s">composer:2</span> <span class="k">AS</span> <span class="s">build</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app/</span>
+<span class="k">COPY</span> composer.json composer.lock ./
+<span class="k">RUN</span> composer install --no-dev --ignore-platform-reqs --optimize-autoloader
+
+<span class="k">FROM</span> <span class="s">php:8.4-alpine</span>
+
+<span class="c"># recommended: install optional extensions ext-ev and ext-sockets</span>
+<span class="k">RUN</span> apk --no-cache add <span class="si">${</span><span class="nv">PHPIZE_DEPS</span><span class="si">}</span> libev linux-headers <span class="se">\ </span>
+    <span class="o">&amp;&amp;</span> pecl install ev <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> docker-php-ext-enable ev <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> docker-php-ext-install sockets <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> apk del <span class="si">${</span><span class="nv">PHPIZE_DEPS</span><span class="si">}</span> linux-headers <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;memory_limit = -1&quot;</span> &gt;&gt; <span class="s2">&quot;</span><span class="nv">$PHP_INI_DIR</span><span class="s2">/conf.d/acme.ini&quot;</span>
+
+<span class="k">WORKDIR</span><span class="s"> /app/</span>
+<span class="k">COPY</span> public/ public/
+<span class="c"># COPY src/ src/</span>
+<span class="k">COPY</span> --from<span class="o">=</span>build /app/vendor/ vendor/
+
+<span class="k">ENV</span> <span class="nv">X_LISTEN</span><span class="o">=</span><span class="m">0</span>.0.0.0:8080
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="k">USER</span><span class="s"> nobody:nobody</span>
+<span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;php&quot;</span><span class="p">,</span> <span class="s2">&quot;public/index.php&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Simply place the <code>Dockerfile</code> in your project directory like this:</p>
+<div class="highlight"><pre><span></span><code>acme/
+├── public/
+│   └── index.php
+├── vendor/
+├── composer.json
+├── composer.lock
+└── Dockerfile
+</code></pre></div>
+<p>As a next step, you need to build a Docker image for your project from the <code>Dockerfile</code>:</p>
+<div class="highlight"><pre><span></span><code>$ docker build -t acme .
+</code></pre></div>
+<p>Once the Docker image is built, you can run a Docker container from this image:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Temporary container in foreground</label><label for="__tabbed_3_2">Detached container in background</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$ docker run -it --rm -p <span class="m">8080</span>:8080 acme
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$ docker run -d --ulimit <span class="nv">nofile</span><span class="o">=</span><span class="m">100000</span> -p <span class="m">8080</span>:8080 acme
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Once running, you can check your web application responds as expected. Use your
+favorite web browser or command-line tool:</p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:8080/
+Hello wörld!
+</code></pre></div>
+<p>This should be enough to get you started with Docker.</p>
+<blockquote>
+<p>ℹ️ <strong>Getting fancy with Docker</strong></p>
+<p>A complete Docker tutorial is out of scope for this guide, but here are some
+interesting pointers for you: If you want to share your application, you may
+push your Docker image to your image registry of choice (private or public).
+This allows you to pull and reuse your application image on any infrastructure.
+Speaking of scalable infrastructure, you may also use X in serverless
+environments and autoscale your application with your load, anywhere from zero
+to hundreds of servers and beyond. Endless options!</p>
+</blockquote>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../testing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Testing" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Testing
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../api/app/" class="md-footer__link md-footer__link--next" aria-label="Next: App" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              App
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>
