@@ -7,7 +7,7 @@ n=0
 skipping=false
 curl() {
     skipping=false
-    out=$($(which curl) "$@" 2>&1);
+    out=$($(which curl) "$@" 2>&1 | sed 's/\r$//');
 }
 match() {
     [[ $skipping == true ]] && return 0
@@ -23,19 +23,19 @@ skipif() {
 
 curl -v $base/ --compressed
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[\r\n]"
-match -iP "Content-Encoding: br[\r\n]"
-match -iP "Vary: Accept-Encoding[\r\n]"
+match -iE "Content-Type: text/html$"
+match -iE "Content-Encoding: br$"
+match -iE "Vary: Accept-Encoding$"
 
 curl -v $base/ --compressed -H 'Accept-Encoding: gzip, deflate'
 match "HTTP/.* 200"
-match -iP "Content-Type: text/html[\r\n]"
-match -iP "Content-Encoding: gzip[\r\n]"
-match -iP "Vary: Accept-Encoding[\r\n]"
+match -iE "Content-Type: text/html$"
+match -iE "Content-Encoding: gzip$"
+match -iE "Vary: Accept-Encoding$"
 
 curl -v $base/robots.txt
 match "HTTP/.* 200"
-match -iP "Content-Type: text/plain[;\r\n]"
+match -iE "Content-Type: text/plain(;.*)?$"
 
 curl -v $base/invalid
 match "HTTP/.* 404"
@@ -45,85 +45,85 @@ match -i "Content-Type: text/html"
 
 curl -v $base/docs
 match "HTTP/.* 301"
-match -iP "Location: .*/docs/[\r\n]"
+match -iE "Location: .*/docs/$"
 
 curl -v $base/docs/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/getting-started/[\r\n]"
+match -iE "Location: .*/docs/getting-started/$"
 
 # check HTTP redirects behind CDN
 
 curl -v $base/docs -H 'X-Forwarded-Host: example.com' -H 'X-Forwarded-Proto: https'
 match "HTTP/.* 301"
-skipif -iP "Location: $base/docs/[\r\n]"
-match -iP "Location: https://example\.com/docs/[\r\n]"
+skipif -iE "Location: $base/docs/$"
+match -iE "Location: https://example\.com/docs/$"
 
 curl -v $base/docs/ -H 'X-Forwarded-Host: example.com' -H 'X-Forwarded-Proto: http'
 match "HTTP/.* 302"
-skipif -iP "Location: $base/docs/getting-started/[\r\n]"
-match -iP "Location: http://example\.com/docs/getting-started/[\r\n]"
+skipif -iE "Location: $base/docs/getting-started/$"
+match -iE "Location: http://example\.com/docs/getting-started/$"
 
 # check HTTP redirects for chapter endpoints
 
 curl -v $base/docs/getting-started/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
+match -iE "Location: .*/docs/getting-started/quickstart/$"
 
 curl -v $base/docs/best-practices/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/best-practices/controllers/[\r\n]"
+match -iE "Location: .*/docs/best-practices/controllers/$"
 
 curl -v $base/docs/api/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/api/app/[\r\n]"
+match -iE "Location: .*/docs/api/app/$"
 
 curl -v $base/docs/async/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/async/fibers/[\r\n]"
+match -iE "Location: .*/docs/async/fibers/$"
 
 curl -v $base/docs/integrations/
 match "HTTP/.* 302"
-match -iP "Location: .*/docs/integrations/database/[\r\n]"
+match -iE "Location: .*/docs/integrations/database/$"
 
 # check HTTP redirects for `index.html` at end of path
 
 curl -v $base/index.html
 match "HTTP/.* 301"
-match -iP "Location: .*/[\r\n]"
+match -iE "Location: .*/$"
 
 curl -v $base/docs/index.html
 match "HTTP/.* 301"
-match -iP "Location: .*/docs/[\r\n]"
+match -iE "Location: .*/docs/$"
 
 curl -v $base/docs/getting-started/quickstart/index.html
 match "HTTP/.* 301"
-match -iP "Location: .*/docs/getting-started/quickstart/[\r\n]"
+match -iE "Location: .*/docs/getting-started/quickstart/$"
 
 # check HTTP redirects for old documentation structure
 
 curl -v $base/docs/more/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./getting-started/philosophy/[\r\n]"
+match -iE "Location: .*/\.\./getting-started/philosophy/$"
 
 curl -v $base/docs/more/philosophy/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./\.\./getting-started/philosophy/[\r\n]"
+match -iE "Location: .*/\.\./\.\./getting-started/philosophy/$"
 
 curl -v $base/docs/more/architecture/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./\.\./getting-started/philosophy/[\r\n]"
+match -iE "Location: .*/\.\./\.\./getting-started/philosophy/$"
 
 curl -v $base/docs/more/community/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./\.\./getting-started/community/[\r\n]"
+match -iE "Location: .*/\.\./\.\./getting-started/community/$"
 
 curl -v $base/docs/async/child-processes/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./\.\./integrations/child-processes/[\r\n]"
+match -iE "Location: .*/\.\./\.\./integrations/child-processes/$"
 
 curl -v $base/docs/async/streaming/
 match "HTTP/.* 302"
-match -iP "Location: .*/\.\./\.\./integrations/streaming/[\r\n]"
+match -iE "Location: .*/\.\./\.\./integrations/streaming/$"
 
 # end
 
