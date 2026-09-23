@@ -1,0 +1,19 @@
+services:
+  mkdocs:
+    image: squidfunk/mkdocs-material:8.1.3
+    command: serve -a 0.0.0.0:8000
+    ports:
+      - ${PORT:-8000}:8000
+    working_dir: /project/
+    volumes:
+      - ./mkdocs.yml:/project/mkdocs.yml:ro
+      - ./:/project/docs/:ro
+    stop_signal: SIGINT
+
+  build:
+    extends: mkdocs
+    command: build
+    volumes:
+      - ../build/:/project/build/:rw
+    profiles:
+      - build

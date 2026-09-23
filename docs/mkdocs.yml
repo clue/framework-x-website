@@ -1,0 +1,51 @@
+site_name: Framework X documentation
+site_url: https://framework-x.org/docs/
+site_dir: build/docs
+
+repo_url: https://github.com/clue/framework-x
+repo_name: clue/framework-x
+edit_uri: "edit/main/docs/"
+
+theme:
+  custom_dir: build/overrides/
+  name: material
+  features:
+    - navigation.sections
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+nav:
+  - Getting Started:
+    - getting-started/quickstart.md
+    - getting-started/philosophy.md
+    - getting-started/community.md
+  - Best Practices:
+    - "Controller classes": best-practices/controllers.md
+    - best-practices/testing.md
+    - best-practices/deployment.md
+  - API:
+    - api/app.md
+    - api/middleware.md
+    - api/request.md
+    - api/response.md
+  - Async:
+    - async/fibers.md
+    - async/coroutines.md
+    - async/promises.md
+  - Integrations:
+    - integrations/database.md
+    - "⚠ Filesystem": integrations/filesystem.md
+    - "⚠ Child processes": integrations/child-processes.md
+    - "⚠ Streaming": integrations/streaming.md
+    - "⚠ Authentication": integrations/authentication.md
+    - "⚠ Sessions": integrations/sessions.md
+    - "⚠ Templates": integrations/templates.md
+    - "⚠ Queueing": integrations/queueing.md
