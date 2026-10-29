@@ -1,0 +1,3 @@
+- hide nav + span text-base + #main margin: 8rem 0 20em 2em;
+- screenshot at 1280x720 (DPR 1)
+- shrink PNG
